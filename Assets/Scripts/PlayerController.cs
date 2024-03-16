@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 7f;
+    public Joystick joystick;
+
     private SpriteRenderer spriteRenderer;
     private Vector2 touchStartPosition;
 
@@ -17,23 +19,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
+        float horizontalInput = joystick.Horizontal;
+        float verticalInput = joystick.Vertical;
 
-            if (touch.phase == TouchPhase.Began)
-                touchStartPosition = touch.position;
-            else if (touch.phase == TouchPhase.Moved)
-            {
-                Vector2 touchDeltaPosition = touch.deltaPosition;
-                Vector2 normalizedTouchDelta = touchDeltaPosition.normalized;
+        Vector2 direction = new Vector2(horizontalInput, verticalInput).normalized;
 
-                Vector3 movement = new Vector3(normalizedTouchDelta.x, normalizedTouchDelta.y, 0f) * moveSpeed * Time.deltaTime;
-                transform.Translate(movement);
+        Vector3 movement = new Vector3(direction.x, direction.y, 0f) * moveSpeed * Time.deltaTime;
+        transform.Translate(movement);
 
-                if (normalizedTouchDelta.x > 0) spriteRenderer.flipX = true;
-                else if (normalizedTouchDelta.x < 0) spriteRenderer.flipX = false;
-            }
-        }
+        if (horizontalInput > 0) spriteRenderer.flipX = true;
+        else if (horizontalInput < 0) spriteRenderer.flipX = false;
     }
 }
