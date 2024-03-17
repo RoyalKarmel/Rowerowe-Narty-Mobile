@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6869496972385091237}
   m_Layer: 0
   m_Name: Speed
-  m_TagString: Boost
+  m_TagString: Speed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class score : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public TMP_Text scoreText;
     public TMP_Text bestScoreText;
+    public TMP_Text gameOverScoreText;
+    public TMP_Text gameOverBestScoreText;
 
     private int currentScore = 0;
     private int currentBestScore = 0;
@@ -30,6 +33,7 @@ public class score : MonoBehaviour
     void SetBestScoreText()
     {
         bestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
+        gameOverBestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
     }
 
     void SetScoreText()
@@ -42,5 +46,10 @@ public class score : MonoBehaviour
             PlayerPrefs.SetInt(bestScoreKey, currentBestScore);
             SetBestScoreText();
         }
+    }
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
