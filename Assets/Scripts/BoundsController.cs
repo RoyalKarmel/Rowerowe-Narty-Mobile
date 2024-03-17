@@ -22,6 +22,4 @@ public class BoundsController : MonoBehaviour
         viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + objectHeight, screenBounds.y - objectHeight);
         transform.position = viewPos;
     }
-
-
 }
