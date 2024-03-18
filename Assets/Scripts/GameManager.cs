@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text gameOverScoreText;
     public TMP_Text gameOverBestScoreText;
     public TMP_Text coinsText;
+    public TMP_Text ammoText;
     public GameObject gameOverScreen;
 
+    public int scoreMultiplier = 1;
     private int currentScore = 0;
     private int currentBestScore = 0;
     private int coins = 0;
@@ -36,10 +38,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        currentScore++;
+        currentScore += scoreMultiplier;
         SetScoreText();
     }
 
+    // Set scores text
     void SetBestScoreText()
     {
         bestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
@@ -50,11 +53,19 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: <color=#f21010>" + currentScore.ToString() + "</color>";
     }
 
+    // Set coins text
     void SetCoinsText()
     {
         coinsText.text = coins.ToString();
     }
 
+    // Set ammo text
+    public void SetAmmoText(int ammo)
+    {
+        ammoText.text = ammo.ToString();
+    }
+
+    // Update coins
     public void setCoins()
     {
         coins++;
@@ -62,6 +73,7 @@ public class GameManager : MonoBehaviour
         SetCoinsText();
     }
 
+    // You lose
     public void gameOver()
     {
         Time.timeScale = 0f;
@@ -70,7 +82,6 @@ public class GameManager : MonoBehaviour
         {
             currentBestScore = currentScore;
             PlayerPrefs.SetInt(bestScoreKey, currentBestScore);
-            SetBestScoreText();
         }
 
         gameOverScoreText.text = "Score: <color=#f21010>" + currentScore.ToString() + "</color>";
@@ -78,6 +89,7 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(true);
     }
 
+    // Restart game
     public void restartGame()
     {
         Time.timeScale = 1f;

@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip speed;
     public AudioClip shield;
     public AudioClip pistol;
+    public AudioClip shoot;
     public AudioClip coin;
 
     public void PlayBoostSound(string boostTag)

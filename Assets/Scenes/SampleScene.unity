@@ -1396,6 +1396,7 @@ MonoBehaviour:
   speed: {fileID: 8300000, guid: 889ecb448ecc41d4ab9d4bfb2d49870e, type: 3}
   shield: {fileID: 8300000, guid: f492e50e5d253d9438020683e18e1464, type: 3}
   pistol: {fileID: 8300000, guid: d135b903416ca2b4abbc9062106cb4b8, type: 3}
+  shoot: {fileID: 8300000, guid: 12456311d4dbf08488991cd720b564d8, type: 3}
   coin: {fileID: 8300000, guid: eaa2c5fb17be32f42b41089603448f00, type: 3}
 --- !u!1 &1017248350
 GameObject:
@@ -2295,6 +2296,11 @@ MonoBehaviour:
   speedImage: {fileID: 1732810247}
   shieldImage: {fileID: 1238517154}
   pistolImage: {fileID: 1746505381}
+  gameManager: {fileID: 1842339212}
+  playerController: {fileID: 5279733}
+  boostDuration: 5
+  ammo: 20
+  acceleration: 9
 --- !u!1 &1537569290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,7 +3025,9 @@ MonoBehaviour:
   gameOverScoreText: {fileID: 1538209480}
   gameOverBestScoreText: {fileID: 91020095}
   coinsText: {fileID: 1909596133}
+  ammoText: {fileID: 2086847169}
   gameOverScreen: {fileID: 1545115899}
+  scoreMultiplier: 1
 --- !u!4 &1842339213
 Transform:
   m_ObjectHideFlags: 0

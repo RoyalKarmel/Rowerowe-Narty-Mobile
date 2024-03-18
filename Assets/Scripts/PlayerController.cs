@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float normalSpeed = 7f;
-    public float slowDown = 4f;
     public Joystick joystick;
     public GameManager gameManager;
     public BoostManager boostManager;
 
     private float moveSpeed = 0f;
+    private bool hasShield = false;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
 
@@ -21,28 +21,37 @@ public class PlayerController : MonoBehaviour
         moveSpeed = normalSpeed;
     }
 
+    // Collision with obstacles
     void OnCollisionEnter2D(Collision2D collision)
     {
         audioSource = collision.gameObject.GetComponent<AudioSource>();
         audioSource.Play();
 
-        gameManager.gameOver();
+        if (!hasShield)
+            gameManager.gameOver();
+        else
+        {
+            ToggleShield(false);
+            boostManager.boostEffect("Shield");
+            boostManager.hideBoostUI("Shield");
+        }
     }
 
+    // Collision with triggers (boosts & puddles)
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Puddle"))
         {
             audioSource = other.gameObject.GetComponent<AudioSource>();
             audioSource.Play();
-            moveSpeed = slowDown;
+            SlowDown();
         }
         else
         {
             if (other.gameObject.CompareTag("Coin"))
                 gameManager.setCoins();
             else
-                boostManager.showBoostUI(other.gameObject.tag);
+                boostManager.boostEffect(other.gameObject.tag);
 
             Destroy(other.gameObject);
         }
@@ -51,7 +60,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Puddle"))
-            moveSpeed = normalSpeed;
+            SetMoveSpeed();
     }
 
     // Update is called once per frame
@@ -67,5 +76,22 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalInput > 0) spriteRenderer.flipX = true;
         else if (horizontalInput < 0) spriteRenderer.flipX = false;
+    }
+
+    // Movement speed
+    void SlowDown()
+    {
+        moveSpeed /= 2;
+    }
+    public void SetMoveSpeed(float speed = -1)
+    {
+        if (speed == -1) moveSpeed = normalSpeed;
+        else moveSpeed = speed;
+    }
+
+    // Toggle shield
+    public void ToggleShield(bool isActive)
+    {
+        hasShield = isActive;
     }
 }
