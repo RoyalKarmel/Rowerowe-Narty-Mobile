@@ -58,6 +58,7 @@ public class BoostManager : MonoBehaviour
                 break;
             case "Shield":
                 shieldImage.SetActive(false);
+                soundManager.PlayBoostSound(boostTag);
                 break;
             case "Pistol":
                 pistolImage.SetActive(false);

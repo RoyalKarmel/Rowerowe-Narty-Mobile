@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
             gameManager.gameOver();
         else
         {
+            Destroy(collision.gameObject);
             ToggleShield(false);
-            boostManager.boostEffect("Shield");
             boostManager.hideBoostUI("Shield");
         }
     }
@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
     // Toggle shield
     public void ToggleShield(bool isActive)
     {
+        Debug.Log(isActive);
         hasShield = isActive;
     }
 }

@@ -348,6 +348,7 @@ MonoBehaviour:
   joystick: {fileID: 1542493801}
   gameManager: {fileID: 1842339212}
   boostManager: {fileID: 1375574377}
+  soundManager: {fileID: 887186371}
 --- !u!114 &5279734
 MonoBehaviour:
   m_ObjectHideFlags: 0
