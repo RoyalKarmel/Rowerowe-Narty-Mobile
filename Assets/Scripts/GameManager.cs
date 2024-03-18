@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey(coinsKey))
         {
             coins = PlayerPrefs.GetInt(coinsKey);
-            coinsText.text = coins.ToString();
+            SetCoinsText();
         }
     }
 
@@ -48,6 +48,23 @@ public class GameManager : MonoBehaviour
     void SetScoreText()
     {
         scoreText.text = "Score: <color=#f21010>" + currentScore.ToString() + "</color>";
+    }
+
+    void SetCoinsText()
+    {
+        coinsText.text = coins.ToString();
+    }
+
+    public void setCoins()
+    {
+        coins++;
+        PlayerPrefs.SetInt(coinsKey, coins);
+        SetCoinsText();
+    }
+
+    public void gameOver()
+    {
+        Time.timeScale = 0f;
 
         if (currentScore > currentBestScore)
         {
@@ -55,11 +72,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt(bestScoreKey, currentBestScore);
             SetBestScoreText();
         }
-    }
 
-    public void gameOver()
-    {
-        Time.timeScale = 0f;
         gameOverScoreText.text = "Score: <color=#f21010>" + currentScore.ToString() + "</color>";
         gameOverBestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
         gameOverScreen.SetActive(true);

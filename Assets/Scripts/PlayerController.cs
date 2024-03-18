@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float slowDown = 4f;
     public Joystick joystick;
     public GameManager gameManager;
+    public BoostManager boostManager;
 
     private float moveSpeed = 0f;
     private SpriteRenderer spriteRenderer;
@@ -30,11 +31,21 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        audioSource = other.gameObject.GetComponent<AudioSource>();
-        audioSource.Play();
-
         if (other.gameObject.CompareTag("Puddle"))
+        {
+            audioSource = other.gameObject.GetComponent<AudioSource>();
+            audioSource.Play();
             moveSpeed = slowDown;
+        }
+        else
+        {
+            if (other.gameObject.CompareTag("Coin"))
+                gameManager.setCoins();
+            else
+                boostManager.showBoostUI(other.gameObject.tag);
+
+            Destroy(other.gameObject);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
