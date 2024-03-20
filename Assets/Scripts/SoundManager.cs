@@ -34,4 +34,8 @@ public class SoundManager : MonoBehaviour
                 break;
         }
     }
+
+    public void PlayShootSound() {
+        AudioSource.PlayClipAtPoint(shoot, transform.position);
+    }
 }

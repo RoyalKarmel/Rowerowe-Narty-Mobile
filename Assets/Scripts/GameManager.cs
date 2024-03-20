@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text coinsText;
     public TMP_Text ammoText;
     public GameObject gameOverScreen;
+    public GameObject uiPanel;
 
-    public int scoreMultiplier = 1;
-    private int currentScore = 0;
+    public float scoreMultiplier = 1;
+    private float currentScore = 0;
     private int currentBestScore = 0;
     private int coins = 0;
     private string bestScoreKey = "BestScore";
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        currentScore += scoreMultiplier;
+        currentScore += scoreMultiplier * Time.deltaTime;
         SetScoreText();
     }
 
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     void SetScoreText()
     {
-        scoreText.text = "Score: <color=#f21010>" + currentScore.ToString() + "</color>";
+        scoreText.text = "Score: <color=#f21010>" + Mathf.RoundToInt(currentScore).ToString() + "</color>";
     }
 
     // Set coins text
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Update coins
-    public void setCoins()
+    public void SetCoins()
     {
         coins++;
         PlayerPrefs.SetInt(coinsKey, coins);
@@ -74,23 +75,24 @@ public class GameManager : MonoBehaviour
     }
 
     // You lose
-    public void gameOver()
+    public void GameOver()
     {
         Time.timeScale = 0f;
 
         if (currentScore > currentBestScore)
         {
-            currentBestScore = currentScore;
-            PlayerPrefs.SetInt(bestScoreKey, currentBestScore);
+            currentBestScore = Mathf.RoundToInt(currentScore);
+            PlayerPrefs.SetFloat(bestScoreKey, currentBestScore);
         }
 
-        gameOverScoreText.text = "Score: <color=#f21010>" + currentScore.ToString() + "</color>";
+        gameOverScoreText.text = "Score: <color=#f21010>" + Mathf.RoundToInt(currentScore).ToString() + "</color>";
         gameOverBestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
         gameOverScreen.SetActive(true);
+        uiPanel.SetActive(false);
     }
 
     // Restart game
-    public void restartGame()
+    public void RestartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

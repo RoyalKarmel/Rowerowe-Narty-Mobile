@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoostManager : MonoBehaviour
 {
@@ -11,14 +12,15 @@ public class BoostManager : MonoBehaviour
     public GameObject pistolImage;
 
     public GameManager gameManager;
+    public Shooting shootingManager;
     public PlayerController playerController;
+    public GameObject shootingKeys;
 
     public int boostDuration = 5;
-    public int ammo = 20;
     public float acceleration = 9f;
 
     // Show boost UI & play sound
-    public void boostEffect(string boostTag)
+    public void BoostEffect(string boostTag)
     {
         soundManager.PlayBoostSound(boostTag);
 
@@ -38,6 +40,7 @@ public class BoostManager : MonoBehaviour
                 break;
             case "Pistol":
                 pistolImage.SetActive(true);
+                shootingKeys.SetActive(true);
                 Pistol();
                 break;
             default:
@@ -46,15 +49,17 @@ public class BoostManager : MonoBehaviour
     }
 
     // Hide boost UI
-    public void hideBoostUI(string boostTag)
+    public void DisableBoost(string boostTag)
     {
         switch (boostTag)
         {
             case "Multiplier":
                 multiplierImage.SetActive(false);
+                gameManager.scoreMultiplier = 1;
                 break;
             case "Speed":
                 speedImage.SetActive(false);
+                playerController.SetMoveSpeed();
                 break;
             case "Shield":
                 shieldImage.SetActive(false);
@@ -62,6 +67,7 @@ public class BoostManager : MonoBehaviour
                 break;
             case "Pistol":
                 pistolImage.SetActive(false);
+                shootingKeys.SetActive(false);
                 break;
             default:
                 break;
@@ -77,8 +83,7 @@ public class BoostManager : MonoBehaviour
 
     void ResetMultiplier()
     {
-        gameManager.scoreMultiplier = 1;
-        hideBoostUI("Multiplier");
+        DisableBoost("Multiplier");
     }
 
     // Speed
@@ -90,8 +95,7 @@ public class BoostManager : MonoBehaviour
 
     void ResetSpeed()
     {
-        playerController.SetMoveSpeed();
-        hideBoostUI("Speed");
+        DisableBoost("Speed");
     }
 
     // Shield
@@ -103,16 +107,7 @@ public class BoostManager : MonoBehaviour
     // Pistol
     void Pistol()
     {
-        gameManager.SetAmmoText(ammo);
-    }
-
-    void Shoot()
-    {
-        ammo--;
-        AudioSource.PlayClipAtPoint(soundManager.shoot, transform.position);
-
-        if (ammo == 0) hideBoostUI("Pistol");
-
-        gameManager.SetAmmoText(ammo);
+        shootingManager.ammo = 20;
+        gameManager.SetAmmoText(shootingManager.ammo);
     }
 }

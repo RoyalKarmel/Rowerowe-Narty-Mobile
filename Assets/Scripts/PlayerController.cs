@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private float moveSpeed = 0f;
     private bool hasShield = false;
+
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
 
@@ -21,40 +22,23 @@ public class PlayerController : MonoBehaviour
         moveSpeed = normalSpeed;
     }
 
-    // Collision with obstacles
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        audioSource = collision.gameObject.GetComponent<AudioSource>();
-        audioSource.Play();
-
-        if (!hasShield)
-            gameManager.gameOver();
-        else
-        {
-            Destroy(collision.gameObject);
-            ToggleShield(false);
-            boostManager.hideBoostUI("Shield");
-        }
-    }
-
-    // Collision with triggers (boosts & puddles)
+    // Check collision
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Puddle"))
+        if (other.gameObject.CompareTag("Obstacle") || other.gameObject.CompareTag("Puddle"))
         {
             audioSource = other.gameObject.GetComponent<AudioSource>();
             audioSource.Play();
-            SlowDown();
-        }
-        else
-        {
-            if (other.gameObject.CompareTag("Coin"))
-                gameManager.setCoins();
-            else
-                boostManager.boostEffect(other.gameObject.tag);
 
-            Destroy(other.gameObject);
+            if (other.gameObject.CompareTag("Obstacle"))
+                HandleObstacleCollision(other.gameObject);
+            else
+                SlowDown();
         }
+        else if (other.gameObject.CompareTag("Bullet"))
+            return;
+        else
+            HandleBoostCollision(other.gameObject);
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -78,6 +62,29 @@ public class PlayerController : MonoBehaviour
         else if (horizontalInput < 0) spriteRenderer.flipX = false;
     }
 
+    // Handle collision
+    void HandleObstacleCollision(GameObject obstacle)
+    {
+        if (!hasShield)
+            gameManager.GameOver();
+        else
+        {
+            Destroy(obstacle);
+            ToggleShield(false);
+            boostManager.DisableBoost("Shield");
+        }
+    }
+
+    void HandleBoostCollision(GameObject boost)
+    {
+        if (boost.CompareTag("Coin"))
+            gameManager.SetCoins();
+        else
+            boostManager.BoostEffect(boost.tag);
+
+        Destroy(boost);
+    }
+
     // Movement speed
     void SlowDown()
     {
@@ -92,7 +99,6 @@ public class PlayerController : MonoBehaviour
     // Toggle shield
     public void ToggleShield(bool isActive)
     {
-        Debug.Log(isActive);
         hasShield = isActive;
     }
 }
