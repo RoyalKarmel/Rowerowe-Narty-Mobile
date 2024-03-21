@@ -291,8 +291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.53, y: -96.75}
-  m_SizeDelta: {x: 232.01, y: 157.48}
+  m_AnchoredPosition: {x: 0.53, y: -118}
+  m_SizeDelta: {x: 920, y: 223.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376353289
 MonoBehaviour:
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1260ce92fabd4680433a82fd33d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logo: {fileID: 0}
 --- !u!1 &471621401
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +769,7 @@ GameObject:
   - component: {fileID: 847745893}
   - component: {fileID: 847745895}
   - component: {fileID: 847745894}
+  - component: {fileID: 847745896}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -832,6 +834,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847745892}
   m_CullTransparentMesh: 1
+--- !u!95 &847745896
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847745892}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb576c4ba1060c443a4c542883acca78, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1088329923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1025,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.5299988, y: -18.409996}
+  m_AnchoredPosition: {x: -0.5299988, y: -79}
   m_SizeDelta: {x: -32, y: -108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1139003836
@@ -1370,6 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c1260ce92fabd4680433a82fd33d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logo: {fileID: 847745896}
 --- !u!1 &2087953162
 GameObject:
   m_ObjectHideFlags: 0
