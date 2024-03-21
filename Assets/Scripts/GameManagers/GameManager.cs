@@ -97,4 +97,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    // Back to menu
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
