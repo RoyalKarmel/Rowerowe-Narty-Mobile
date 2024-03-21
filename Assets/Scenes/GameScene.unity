@@ -348,6 +348,11 @@ MonoBehaviour:
   joystick: {fileID: 1542493801}
   gameManager: {fileID: 1842339212}
   boostManager: {fileID: 1842339215}
+  skins:
+  - {fileID: 21300000, guid: 78b8ce38698163743847cdd6e4ff13de, type: 3}
+  - {fileID: 21300000, guid: 8e22812ef66a6874ea5c5cd4e8d30b8b, type: 3}
+  - {fileID: 21300000, guid: d81ffd3e4cf90414695b4078dac89bc3, type: 3}
+  - {fileID: 21300000, guid: 19ca3e975f6d2a846862c7fc7c3c23ff, type: 3}
 --- !u!114 &5279734
 MonoBehaviour:
   m_ObjectHideFlags: 0

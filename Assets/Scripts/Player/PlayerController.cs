@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Joystick joystick;
     public GameManager gameManager;
     public BoostManager boostManager;
+    public Sprite[] skins;
 
     private float moveSpeed = 0f;
     private bool hasShield = false;
@@ -15,11 +16,20 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
 
+    private string selectedSkinKey = "SelectedSkinID";
+
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         moveSpeed = normalSpeed;
+
+        int selectedSkinID = PlayerPrefs.GetInt(selectedSkinKey, 0);
+
+        if (skins != null && selectedSkinID >= 0 && selectedSkinID < skins.Length)
+            spriteRenderer.sprite = skins[selectedSkinID];
+        else
+            Debug.LogError("Invalid skin configuration or selected skin ID: " + selectedSkinID);
     }
 
     // Check collision
