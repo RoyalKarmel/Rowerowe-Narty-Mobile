@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.09, y: 1}
-  m_AnchoredPosition: {x: 51.200012, y: 0.0000076293945}
+  m_AnchoredPosition: {x: 51.200027, y: 0.0000076293945}
   m_SizeDelta: {x: 1002.7001, y: -0.000015258789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2304479
@@ -3730,7 +3730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596dfcd3049e887408debc436ba4fd87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5134587943758844817, guid: f8a184dcb5563f44fb4085d8c4bb4a6c, type: 3}
+  bulletPrefab: {fileID: 2300148447624063582, guid: b571d60227b427b4894f00512f7e73b9, type: 3}
   player: {fileID: 5279732}
   gameManager: {fileID: 1842339212}
   soundManager: {fileID: 887186371}
