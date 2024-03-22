@@ -1894,6 +1894,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd76f3829e47724c8390c30f0c8f109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musics:
+  - {fileID: 8300000, guid: a535e8785f4976448be4c713a95d7a02, type: 3}
+  - {fileID: 8300000, guid: 218037fb4e32d604cb9ba6e9691ee96b, type: 3}
+  - {fileID: 8300000, guid: 8b1ec2fbbc5c02e439e06342b662d9b0, type: 3}
+  - {fileID: 8300000, guid: 301cdecd550d0594d9f5e752896e9577, type: 3}
   multiplier: {fileID: 8300000, guid: b20a9ad76e023154891e0308d4c3eb41, type: 3}
   speed: {fileID: 8300000, guid: 889ecb448ecc41d4ab9d4bfb2d49870e, type: 3}
   shield: {fileID: 8300000, guid: f492e50e5d253d9438020683e18e1464, type: 3}

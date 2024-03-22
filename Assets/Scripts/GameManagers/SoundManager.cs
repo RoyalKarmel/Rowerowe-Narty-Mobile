@@ -4,12 +4,30 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public AudioClip[] musics;
     public AudioClip multiplier;
     public AudioClip speed;
     public AudioClip shield;
     public AudioClip pistol;
     public AudioClip shoot;
     public AudioClip coin;
+
+    private AudioSource audioSource;
+    private string selectedMusicKey = "SelectedMusicID";
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+        int selectedMusicID = PlayerPrefs.GetInt(selectedMusicKey, 0);
+        if (musics != null && selectedMusicID >= 0 && selectedMusicID < musics.Length)
+        {
+            audioSource.clip = musics[selectedMusicID];
+            audioSource.Play();
+        }
+        else
+            Debug.LogError("Invalid music configuration or selected music ID: " + selectedMusicID);
+    }
 
     public void PlayBoostSound(string boostTag)
     {
@@ -35,7 +53,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayShootSound() {
+    public void PlayShootSound()
+    {
         AudioSource.PlayClipAtPoint(shoot, transform.position);
     }
 }

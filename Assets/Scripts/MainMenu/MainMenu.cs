@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         logo.Play("LogoStart");
         PlayerPrefs.SetInt("Skin0", 1);
+        PlayerPrefs.SetInt("Music0", 1);
 
         int coins = PlayerPrefs.GetInt(coinsKey, 0);
         coinsText.text = coins.ToString();
