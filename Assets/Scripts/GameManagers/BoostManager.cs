@@ -77,6 +77,7 @@ public class BoostManager : MonoBehaviour
         }
     }
 
+    #region BoostEffects
     // Score multiplier
     void Multiplier()
     {
@@ -113,4 +114,5 @@ public class BoostManager : MonoBehaviour
         shootingManager.ammo = 20;
         gameManager.SetAmmoText(shootingManager.ammo);
     }
+    #endregion
 }

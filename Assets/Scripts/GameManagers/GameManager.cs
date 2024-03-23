@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     private float currentScore = 0;
     private int currentBestScore = 0;
     private int coins = 0;
-    private int coinsMultiplier = 1;
     private string bestScoreKey = "BestScore";
     private string coinsKey = "Coins";
 
@@ -56,6 +55,7 @@ public class GameManager : MonoBehaviour
         SetScoreText();
     }
 
+    #region Set Text
     // Set scores text
     void SetBestScoreText()
     {
@@ -78,20 +78,17 @@ public class GameManager : MonoBehaviour
     {
         ammoText.text = ammo.ToString();
     }
+    #endregion
 
     // Update coins
     public void SetCoins()
     {
-        coins += coinsMultiplier;
+        coins++;
         PlayerPrefs.SetInt(coinsKey, coins);
         SetCoinsText();
     }
 
-    public void SetCoinsMultipier(int multiplier)
-    {
-        coinsMultiplier = multiplier;
-    }
-
+    #region Game Over
     // You lose
     public void GameOver()
     {
@@ -124,4 +121,5 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
+    #endregion
 }

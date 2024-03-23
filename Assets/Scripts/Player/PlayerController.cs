@@ -31,6 +31,22 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("Invalid skin configuration or selected skin ID: " + selectedSkinID);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        float horizontalInput = joystick.Horizontal;
+        float verticalInput = joystick.Vertical;
+
+        Vector2 direction = new Vector2(horizontalInput, verticalInput).normalized;
+
+        Vector3 movement = new Vector3(direction.x, direction.y, 0f) * moveSpeed * Time.deltaTime;
+        transform.Translate(movement);
+
+        if (horizontalInput > 0) spriteRenderer.flipX = true;
+        else if (horizontalInput < 0) spriteRenderer.flipX = false;
+    }
+
+    #region Collision
     // Check collision
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -56,21 +72,6 @@ public class PlayerController : MonoBehaviour
             SetMoveSpeed();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        float horizontalInput = joystick.Horizontal;
-        float verticalInput = joystick.Vertical;
-
-        Vector2 direction = new Vector2(horizontalInput, verticalInput).normalized;
-
-        Vector3 movement = new Vector3(direction.x, direction.y, 0f) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
-
-        if (horizontalInput > 0) spriteRenderer.flipX = true;
-        else if (horizontalInput < 0) spriteRenderer.flipX = false;
-    }
-
     // Handle collision
     void HandleObstacleCollision(GameObject obstacle)
     {
@@ -90,7 +91,9 @@ public class PlayerController : MonoBehaviour
 
         Destroy(boost);
     }
+    #endregion
 
+    #region Effects
     // Movement speed
     void SlowDown()
     {
@@ -107,4 +110,5 @@ public class PlayerController : MonoBehaviour
     {
         hasShield = isActive;
     }
+    #endregion
 }
