@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public AdsManager ads;
     public Animator logo;
     public TMP_Text coinsText;
 
@@ -13,6 +14,8 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        ads.ShowBanner();
+        
         PlayerPrefs.SetInt("Skin0", 1);
         PlayerPrefs.SetInt("Music0", 1);
 

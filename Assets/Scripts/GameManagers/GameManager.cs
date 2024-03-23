@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    public AdsManager ads;
     public TMP_Text scoreText;
     public TMP_Text bestScoreText;
     public TMP_Text gameOverScoreText;
@@ -19,8 +21,19 @@ public class GameManager : MonoBehaviour
     private float currentScore = 0;
     private int currentBestScore = 0;
     private int coins = 0;
+    private int coinsMultiplier = 1;
     private string bestScoreKey = "BestScore";
     private string coinsKey = "Coins";
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+    }
 
     void Start()
     {
@@ -69,15 +82,22 @@ public class GameManager : MonoBehaviour
     // Update coins
     public void SetCoins()
     {
-        coins++;
+        coins += coinsMultiplier;
         PlayerPrefs.SetInt(coinsKey, coins);
         SetCoinsText();
+    }
+
+    public void SetCoinsMultipier(int multiplier)
+    {
+        coinsMultiplier = multiplier;
     }
 
     // You lose
     public void GameOver()
     {
         Time.timeScale = 0f;
+        ads.ShowBanner();
+        ads.PlayInterstitialAd();
 
         if (currentScore > currentBestScore)
         {
