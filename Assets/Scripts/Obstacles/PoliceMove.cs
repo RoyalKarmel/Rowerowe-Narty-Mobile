@@ -7,12 +7,7 @@ public class PoliceMove : MonoBehaviour
     public float moveSpeed = 3f;
     public float deadZoneRight = 13f;
     public float deadZoneLeft = -13f;
-    private SpriteRenderer spriteRenderer;
-
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    public SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
     void Update()

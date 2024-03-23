@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public AudioSource audioSource;
     public AudioClip[] musics;
     public AudioClip multiplier;
     public AudioClip speed;
@@ -12,13 +13,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip shoot;
     public AudioClip coin;
 
-    private AudioSource audioSource;
     private string selectedMusicKey = "SelectedMusicID";
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-
         int selectedMusicID = PlayerPrefs.GetInt(selectedMusicKey, 0);
         if (musics != null && selectedMusicID >= 0 && selectedMusicID < musics.Length)
         {
@@ -31,26 +29,31 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBoostSound(string boostTag)
     {
+        AudioClip clipToPlay = null;
+
         switch (boostTag)
         {
             case "Multiplier":
-                AudioSource.PlayClipAtPoint(multiplier, transform.position);
+                clipToPlay = multiplier;
                 break;
             case "Speed":
-                AudioSource.PlayClipAtPoint(speed, transform.position);
+                clipToPlay = speed;
                 break;
             case "Shield":
-                AudioSource.PlayClipAtPoint(shield, transform.position);
+                clipToPlay = shield;
                 break;
             case "Pistol":
-                AudioSource.PlayClipAtPoint(pistol, transform.position);
+                clipToPlay = pistol;
                 break;
             case "Coin":
-                AudioSource.PlayClipAtPoint(coin, transform.position);
+                clipToPlay = coin;
                 break;
             default:
                 break;
         }
+
+        if (clipToPlay != null)
+            audioSource.PlayOneShot(clipToPlay);
     }
 
     public void PlayShootSound()

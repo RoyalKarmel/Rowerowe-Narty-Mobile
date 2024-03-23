@@ -147,6 +147,7 @@ MonoBehaviour:
   moveSpeed: 3
   deadZoneRight: 13
   deadZoneLeft: -13
+  spriteRenderer: {fileID: 6730090737229922831}
 --- !u!82 &4354600569906551602
 AudioSource:
   m_ObjectHideFlags: 0

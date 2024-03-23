@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        logo.Play("LogoStart");
         PlayerPrefs.SetInt("Skin0", 1);
         PlayerPrefs.SetInt("Music0", 1);
 

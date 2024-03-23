@@ -43,6 +43,9 @@ public class BoostManager : MonoBehaviour
                 shootingKeys.SetActive(true);
                 Pistol();
                 break;
+            case "Coin":
+                gameManager.SetCoins();
+                break;
             default:
                 break;
         }

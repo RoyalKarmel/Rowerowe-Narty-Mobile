@@ -353,6 +353,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e22812ef66a6874ea5c5cd4e8d30b8b, type: 3}
   - {fileID: 21300000, guid: d81ffd3e4cf90414695b4078dac89bc3, type: 3}
   - {fileID: 21300000, guid: 19ca3e975f6d2a846862c7fc7c3c23ff, type: 3}
+  spriteRenderer: {fileID: 5279731}
 --- !u!114 &5279734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,8 +1017,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279242994
-  m_fontColor: {r: 0.9490196, g: 0.0627451, b: 0.0627451, a: 1}
+    rgba: 4292904207
+  m_fontColor: {r: 0.05882353, g: 0.52156866, b: 0.8784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1645,7 +1646,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796853471}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1905,6 +1906,7 @@ MonoBehaviour:
   pistol: {fileID: 8300000, guid: d135b903416ca2b4abbc9062106cb4b8, type: 3}
   shoot: {fileID: 8300000, guid: 12456311d4dbf08488991cd720b564d8, type: 3}
   coin: {fileID: 8300000, guid: eaa2c5fb17be32f42b41089603448f00, type: 3}
+  audioSource: {fileID: 887186369}
 --- !u!1 &992461755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,8 +2985,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279242994
-  m_fontColor: {r: 0.9490196, g: 0.0627451, b: 0.0627451, a: 1}
+    rgba: 4292904207
+  m_fontColor: {r: 0.05882353, g: 0.52156866, b: 0.8784314, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3541,7 +3543,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713134359}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

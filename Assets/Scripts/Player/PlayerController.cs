@@ -9,11 +9,11 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
     public BoostManager boostManager;
     public Sprite[] skins;
+    public SpriteRenderer spriteRenderer;
 
     private float moveSpeed = 0f;
     private bool hasShield = false;
 
-    private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
 
     private string selectedSkinKey = "SelectedSkinID";
@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         moveSpeed = normalSpeed;
 
         int selectedSkinID = PlayerPrefs.GetInt(selectedSkinKey, 0);
@@ -87,10 +86,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleBoostCollision(GameObject boost)
     {
-        if (boost.CompareTag("Coin"))
-            gameManager.SetCoins();
-        else
-            boostManager.BoostEffect(boost.tag);
+        boostManager.BoostEffect(boost.tag);
 
         Destroy(boost);
     }
