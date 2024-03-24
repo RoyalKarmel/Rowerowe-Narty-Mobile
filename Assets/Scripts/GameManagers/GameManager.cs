@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
     public AdsManager ads;
     public TMP_Text scoreText;
     public TMP_Text bestScoreText;
@@ -18,21 +17,12 @@ public class GameManager : MonoBehaviour
     public GameObject uiPanel;
 
     public float scoreMultiplier = 1;
+    public int collectedCoins = 0;
     private float currentScore = 0;
     private int currentBestScore = 0;
     private int coins = 0;
     private string bestScoreKey = "BestScore";
     private string coinsKey = "Coins";
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
-    }
 
     void Start()
     {
@@ -81,9 +71,9 @@ public class GameManager : MonoBehaviour
     #endregion
 
     // Update coins
-    public void SetCoins()
+    public void SetCoins(int collectedCoins)
     {
-        coins++;
+        coins += collectedCoins;
         PlayerPrefs.SetInt(coinsKey, coins);
         SetCoinsText();
     }

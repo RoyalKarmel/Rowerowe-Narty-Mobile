@@ -44,7 +44,8 @@ public class BoostManager : MonoBehaviour
                 Pistol();
                 break;
             case "Coin":
-                gameManager.SetCoins();
+                gameManager.SetCoins(1);
+                gameManager.collectedCoins++;
                 break;
             default:
                 break;

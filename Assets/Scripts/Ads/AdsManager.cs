@@ -37,6 +37,10 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
+
+        banner.LoadBanner();
+        interstitialAds.LoadAd();
+        rewardedAds.LoadAd();
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
@@ -47,16 +51,16 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
     // Show ads
     public void ShowBanner()
     {
-        banner.LoadBanner();
+        banner.ShowBannerAd();
     }
 
     public void PlayInterstitialAd()
     {
-        interstitialAds.LoadAd();
+        interstitialAds.ShowAd();
     }
 
     public void PlayRewardedAd()
     {
-        rewardedAds.LoadAd();
+        rewardedAds.ShowAd();
     }
 }
