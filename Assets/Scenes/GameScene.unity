@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.09, y: 1}
-  m_AnchoredPosition: {x: 51.19922, y: 0}
+  m_AnchoredPosition: {x: 51.19925, y: 0}
   m_SizeDelta: {x: 1002.7001, y: -0.000015258789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2304479
@@ -4537,7 +4537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidGameId: 5580740
   _iOSGameId: 5580741
-  _testMode: 1
+  _testMode: 0
   banner: {fileID: 1852678629}
   interstitialAds: {fileID: 1852678630}
   rewardedAds: {fileID: 1852678633}

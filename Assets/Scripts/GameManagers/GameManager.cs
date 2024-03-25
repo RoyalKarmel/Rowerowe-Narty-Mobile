@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         if (currentScore > currentBestScore)
         {
             currentBestScore = Mathf.RoundToInt(currentScore);
-            PlayerPrefs.SetFloat(bestScoreKey, currentBestScore);
+            PlayerPrefs.SetInt(bestScoreKey, currentBestScore);
         }
 
         SetGameOverText();
