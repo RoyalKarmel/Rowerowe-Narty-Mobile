@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text coinsText;
     public TMP_Text ammoText;
     public GameObject gameOverScreen;
-    public GameObject uiPanel;
+    public GameObject[] uiToHide;
 
     public float scoreMultiplier = 1;
     public int collectedCoins = 0;
@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: <color=#f21010>" + Mathf.RoundToInt(currentScore).ToString() + "</color>";
     }
 
+    void SetGameOverText()
+    {
+        gameOverScoreText.text = "Score: <color=#f21010>" + Mathf.RoundToInt(currentScore).ToString() + "</color>";
+        gameOverBestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
+    }
+
     // Set coins text
     void SetCoinsText()
     {
@@ -83,6 +89,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0f;
+
         ads.ShowBanner();
         ads.PlayInterstitialAd();
 
@@ -92,10 +99,25 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat(bestScoreKey, currentBestScore);
         }
 
-        gameOverScoreText.text = "Score: <color=#f21010>" + Mathf.RoundToInt(currentScore).ToString() + "</color>";
-        gameOverBestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
+        SetGameOverText();
         gameOverScreen.SetActive(true);
-        uiPanel.SetActive(false);
+
+        // Hide UI
+        foreach (GameObject ui in uiToHide)
+        {
+            ui.SetActive(false);
+        }
+
+        // Destroy obstacles
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == LayerMask.NameToLayer("GameElements"))
+            {
+                Destroy(obj);
+            }
+        }
+
     }
 
     // Restart game
