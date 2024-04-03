@@ -3,6 +3,7 @@ using System;
 [Serializable]
 public class UserData
 {
+    public string id;
     public string name;
     public int best_score;
     public int coins;
@@ -11,6 +12,7 @@ public class UserData
     {
         UserData user = new UserData
         {
+            id = Guid.NewGuid().ToString(),
             name = name,
             best_score = 0,
             coins = 0
