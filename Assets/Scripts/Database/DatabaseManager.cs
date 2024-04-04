@@ -4,6 +4,7 @@ using Firebase.Extensions;
 
 public class DatabaseManager : MonoBehaviour
 {
+    Firebase.FirebaseApp app;
     void Start()
     {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -11,8 +12,7 @@ public class DatabaseManager : MonoBehaviour
             var dependencyStatus = task.Result;
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
-                Firebase.FirebaseApp app = Firebase.FirebaseApp.DefaultInstance;
-
+                app = Firebase.FirebaseApp.DefaultInstance;
                 FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
 
                 UserData newUser = UserData.CreateUser("test2");
@@ -20,7 +20,7 @@ public class DatabaseManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError(System.String.Format(
+                Debug.LogError(string.Format(
                   "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
                 // Firebase Unity SDK is not safe to use here.
             }
@@ -29,16 +29,17 @@ public class DatabaseManager : MonoBehaviour
 
     void AddUserToDatabase(FirebaseFirestore db, UserData user)
     {
-        DocumentReference userRef = db.Collection("users").Document(user.id);
-        userRef.SetAsync(user).ContinueWithOnMainThread(setTask =>
+        CollectionReference usersRef = db.Collection("users");
+        usersRef.AddAsync(user).ContinueWithOnMainThread(task =>
         {
-            if (setTask.IsFaulted)
+            if (task.IsFaulted)
             {
-                Debug.LogError($"Failed to add user to database: {setTask.Exception}");
+                Debug.LogError($"Failed to add user to database: {task.Exception}");
             }
             else
             {
-                Debug.Log("User added successfully.");
+                DocumentReference newUserRef = task.Result;
+                Debug.Log($"User added successfully with ID: {newUserRef.Id}");
             }
         });
     }

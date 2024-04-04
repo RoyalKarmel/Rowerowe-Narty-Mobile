@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:213522479763:android:419a9bf18be7286b142b66",
+        "mobilesdk_app_id": "1:213522479763:android:58431689a9a43d86142b66",
         "android_client_info": {
-          "package_name": "com.royalkarmel.rowerowenarty"
+          "package_name": "com.royalkarmel.com.unity.template.mobile2D"
         }
       },
       "oauth_client": [
