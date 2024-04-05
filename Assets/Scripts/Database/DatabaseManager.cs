@@ -1,10 +1,13 @@
 using UnityEngine;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using System;
+using System.Collections.Generic;
 
 public class DatabaseManager : MonoBehaviour
 {
     Firebase.FirebaseApp app;
+    FirebaseFirestore database;
     void Start()
     {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -13,10 +16,10 @@ public class DatabaseManager : MonoBehaviour
             if (dependencyStatus == Firebase.DependencyStatus.Available)
             {
                 app = Firebase.FirebaseApp.DefaultInstance;
-                FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+                database = FirebaseFirestore.DefaultInstance;
 
-                UserData newUser = UserData.CreateUser("test2");
-                AddUserToDatabase(db, newUser);
+                UserData testUser = UserData.CreateUser("test2");
+                SaveUserDataToDatabase(testUser);
             }
             else
             {
@@ -27,10 +30,12 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    void AddUserToDatabase(FirebaseFirestore db, UserData user)
+    void SaveUserDataToDatabase(UserData user)
     {
-        CollectionReference usersRef = db.Collection("users");
-        usersRef.AddAsync(user).ContinueWithOnMainThread(task =>
+        DocumentReference userDocRef = database.Collection("users").Document(user.id);
+        Debug.Log($"user ref: {userDocRef}");
+
+        userDocRef.SetAsync(user).ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
@@ -38,8 +43,7 @@ public class DatabaseManager : MonoBehaviour
             }
             else
             {
-                DocumentReference newUserRef = task.Result;
-                Debug.Log($"User added successfully with ID: {newUserRef.Id}");
+                Debug.Log($"User added successfully with ID: {user.id}");
             }
         });
     }

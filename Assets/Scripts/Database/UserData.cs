@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class UserData
@@ -12,7 +13,7 @@ public class UserData
     {
         UserData user = new UserData
         {
-            id = Guid.NewGuid().ToString(),
+            id = SystemInfo.deviceUniqueIdentifier,
             name = name,
             best_score = 0,
             coins = 0
