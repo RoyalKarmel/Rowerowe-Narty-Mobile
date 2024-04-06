@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 210446296}
   - component: {fileID: 210446295}
   - component: {fileID: 210446294}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,7 +1134,7 @@ Transform:
   m_GameObject: {fileID: 478014708}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.4, y: 0, z: -1}
+  m_LocalPosition: {x: 87.4, y: 0, z: 0}
   m_LocalScale: {x: 62.5, y: 31.25, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2383,7 +2383,7 @@ Transform:
   m_GameObject: {fileID: 1238517154}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.5, y: 0, z: -1}
+  m_LocalPosition: {x: -23.5, y: 0, z: 0}
   m_LocalScale: {x: 62.5, y: 31.25, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3664,7 +3664,7 @@ Transform:
   m_GameObject: {fileID: 1537569290}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -227, y: 0, z: -1}
+  m_LocalPosition: {x: -227, y: 0, z: 0}
   m_LocalScale: {x: 62.5, y: 31.25, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4319,7 +4319,7 @@ Transform:
   m_GameObject: {fileID: 1732810247}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -125.9, y: 0, z: -1}
+  m_LocalPosition: {x: -125.9, y: 0, z: 0}
   m_LocalScale: {x: 62.5, y: 31.25, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4403,7 +4403,7 @@ Transform:
   m_GameObject: {fileID: 1746505381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 193, y: 0, z: -1}
+  m_LocalPosition: {x: 193, y: 0, z: 0}
   m_LocalScale: {x: 62.5, y: 31.25, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -4617,8 +4617,8 @@ MonoBehaviour:
   shootingManager: {fileID: 1842339214}
   playerController: {fileID: 5279733}
   shootingKeys: {fileID: 610499531}
+  explosionPrefab: {fileID: 8506068593511204940, guid: 193ec1cfcdfda65499d27b541a94f026, type: 3}
   boostDuration: 5
-  bombDuration: 3
   acceleration: 9
 --- !u!1 &1852670858
 GameObject:
@@ -4630,7 +4630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1852670859}
   - component: {fileID: 1852670860}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4646,7 +4646,7 @@ Transform:
   m_GameObject: {fileID: 1852670858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6, y: 2.4, z: -4626}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 60.508087, y: 52.43314, z: 51.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5225,7 +5225,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a535e8785f4976448be4c713a95d7a02, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5538,7 +5538,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &2108383048
 RectTransform:

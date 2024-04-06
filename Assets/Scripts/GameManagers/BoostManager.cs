@@ -14,16 +14,18 @@ public class BoostManager : MonoBehaviour
     public PlayerController playerController;
     public GameObject shootingKeys;
 
+    public ParticleSystem explosionPrefab;
+
     public int boostDuration = 5;
-    public int bombDuration = 2;
     public float acceleration = 9f;
 
+    #region Boost_UI
     // Show boost UI & play sound
-    public void BoostEffect(string boostTag)
+    public void BoostEffect(GameObject boost)
     {
-        soundEffects.PlayBoostSound(boostTag);
+        soundEffects.PlayBoostSound(boost.tag);
 
-        switch (boostTag)
+        switch (boost.tag)
         {
             case "Multiplier":
                 multiplierImage.SetActive(true);
@@ -39,7 +41,7 @@ public class BoostManager : MonoBehaviour
                 break;
             case "Bomb":
                 bombImage.SetActive(true);
-                Bomb();
+                Bomb(boost);
                 break;
             case "Pistol":
                 pistolImage.SetActive(true);
@@ -83,6 +85,7 @@ public class BoostManager : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     #region BoostEffects
     // Score multiplier
@@ -116,7 +119,7 @@ public class BoostManager : MonoBehaviour
     }
 
     // Bomb
-    void Bomb()
+    void Bomb(GameObject bomb)
     {
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 
@@ -124,6 +127,10 @@ public class BoostManager : MonoBehaviour
         {
             Destroy(obstacle);
         }
+
+        Instantiate(explosionPrefab, bomb.transform.position, Quaternion.identity);
+
+        var bombDuration = explosionPrefab.main.duration;
 
         Invoke("ResetBomb", bombDuration);
     }

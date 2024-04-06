@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     void HandleBoostCollision(GameObject boost)
     {
-        boostManager.BoostEffect(boost.tag);
+        boostManager.BoostEffect(boost);
 
         Destroy(boost);
     }
