@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -12,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip pistol;
     public AudioClip shoot;
     public AudioClip coin;
+    public AudioClip bomb;
 
     private string selectedMusicKey = "SelectedMusicID";
 
@@ -41,6 +40,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "Shield":
                 clipToPlay = shield;
+                break;
+            case "Bomb":
+                clipToPlay = bomb;
                 break;
             case "Pistol":
                 clipToPlay = pistol;

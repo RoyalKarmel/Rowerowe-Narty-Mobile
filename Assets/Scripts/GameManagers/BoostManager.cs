@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BoostManager : MonoBehaviour
 {
@@ -9,6 +6,7 @@ public class BoostManager : MonoBehaviour
     public GameObject multiplierImage;
     public GameObject speedImage;
     public GameObject shieldImage;
+    public GameObject bombImage;
     public GameObject pistolImage;
 
     public GameManager gameManager;
@@ -17,6 +15,7 @@ public class BoostManager : MonoBehaviour
     public GameObject shootingKeys;
 
     public int boostDuration = 5;
+    public int bombDuration = 2;
     public float acceleration = 9f;
 
     // Show boost UI & play sound
@@ -37,6 +36,10 @@ public class BoostManager : MonoBehaviour
             case "Shield":
                 shieldImage.SetActive(true);
                 Shield();
+                break;
+            case "Bomb":
+                bombImage.SetActive(true);
+                Bomb();
                 break;
             case "Pistol":
                 pistolImage.SetActive(true);
@@ -68,6 +71,9 @@ public class BoostManager : MonoBehaviour
             case "Shield":
                 shieldImage.SetActive(false);
                 soundManager.PlayBoostSound(boostTag);
+                break;
+            case "Bomb":
+                bombImage.SetActive(false);
                 break;
             case "Pistol":
                 pistolImage.SetActive(false);
@@ -107,6 +113,24 @@ public class BoostManager : MonoBehaviour
     void Shield()
     {
         playerController.ToggleShield(true);
+    }
+
+    // Bomb
+    void Bomb()
+    {
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach (GameObject obstacle in obstacles)
+        {
+            Destroy(obstacle);
+        }
+
+        Invoke("ResetBomb", bombDuration);
+    }
+
+    void ResetBomb()
+    {
+        DisableBoost("Bomb");
     }
 
     // Pistol

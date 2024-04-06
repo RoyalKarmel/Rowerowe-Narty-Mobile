@@ -12,6 +12,7 @@ TagManager:
   - Speed
   - Puddle
   - Bullet
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3132805977
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1508404115
     locked: 0
