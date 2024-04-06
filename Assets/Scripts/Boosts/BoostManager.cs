@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BoostManager : MonoBehaviour
 {
+    public BoostEffect boostEffect;
+
     public GameObject multiplierImage;
     public GameObject speedImage;
     public GameObject shieldImage;
@@ -10,16 +12,9 @@ public class BoostManager : MonoBehaviour
 
     public SoundEffects soundEffects;
     public GameManager gameManager;
-    public Shooting shootingManager;
     public PlayerController playerController;
     public GameObject shootingKeys;
 
-    public ParticleSystem explosionPrefab;
-
-    public int boostDuration = 5;
-    public float acceleration = 9f;
-
-    #region Boost_UI
     // Show boost UI & play sound
     public void BoostEffect(GameObject boost)
     {
@@ -29,24 +24,24 @@ public class BoostManager : MonoBehaviour
         {
             case "Multiplier":
                 multiplierImage.SetActive(true);
-                Multiplier();
+                boostEffect.Multiplier();
                 break;
             case "Speed":
                 speedImage.SetActive(true);
-                Speed();
+                boostEffect.Speed();
                 break;
             case "Shield":
                 shieldImage.SetActive(true);
-                Shield();
+                boostEffect.Shield();
                 break;
             case "Bomb":
                 bombImage.SetActive(true);
-                Bomb(boost);
+                boostEffect.Bomb(boost);
                 break;
             case "Pistol":
                 pistolImage.SetActive(true);
                 shootingKeys.SetActive(true);
-                Pistol();
+                boostEffect.Pistol();
                 break;
             case "Coin":
                 gameManager.SetCoins(1);
@@ -85,66 +80,4 @@ public class BoostManager : MonoBehaviour
                 break;
         }
     }
-    #endregion
-
-    #region BoostEffects
-    // Score multiplier
-    void Multiplier()
-    {
-        gameManager.scoreMultiplier = 2;
-        Invoke("ResetMultiplier", boostDuration);
-    }
-
-    void ResetMultiplier()
-    {
-        DisableBoost("Multiplier");
-    }
-
-    // Speed
-    void Speed()
-    {
-        playerController.SetMoveSpeed(acceleration);
-        Invoke("ResetSpeed", boostDuration);
-    }
-
-    void ResetSpeed()
-    {
-        DisableBoost("Speed");
-    }
-
-    // Shield
-    void Shield()
-    {
-        playerController.ToggleShield(true);
-    }
-
-    // Bomb
-    void Bomb(GameObject bomb)
-    {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-
-        foreach (GameObject obstacle in obstacles)
-        {
-            Destroy(obstacle);
-        }
-
-        Instantiate(explosionPrefab, bomb.transform.position, Quaternion.identity);
-
-        var bombDuration = explosionPrefab.main.duration;
-
-        Invoke("ResetBomb", bombDuration);
-    }
-
-    void ResetBomb()
-    {
-        DisableBoost("Bomb");
-    }
-
-    // Pistol
-    void Pistol()
-    {
-        shootingManager.ammo = 20;
-        gameManager.SetAmmoText(shootingManager.ammo);
-    }
-    #endregion
 }

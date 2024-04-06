@@ -6,15 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public float normalSpeed = 7f;
     public Joystick joystick;
-    public GameManager gameManager;
-    public BoostManager boostManager;
     public Sprite[] skins;
     public SpriteRenderer spriteRenderer;
 
     private float moveSpeed = 0f;
     private bool hasShield = false;
-
-    private AudioSource audioSource;
 
     private string selectedSkinKey = "SelectedSkinID";
 
@@ -46,56 +42,9 @@ public class PlayerController : MonoBehaviour
         else if (horizontalInput < 0) spriteRenderer.flipX = false;
     }
 
-    #region Collision
-    // Check collision
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Obstacle") || other.gameObject.CompareTag("Puddle"))
-        {
-            audioSource = other.gameObject.GetComponent<AudioSource>();
-            audioSource.Play();
-
-            if (other.gameObject.CompareTag("Obstacle"))
-                HandleObstacleCollision(other.gameObject);
-            else
-                SlowDown();
-        }
-        else if (other.gameObject.CompareTag("Bullet"))
-            return;
-        else
-            HandleBoostCollision(other.gameObject);
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Puddle"))
-            SetMoveSpeed();
-    }
-
-    // Handle collision
-    void HandleObstacleCollision(GameObject obstacle)
-    {
-        if (!hasShield)
-            gameManager.GameOver();
-        else
-        {
-            Destroy(obstacle);
-            ToggleShield(false);
-            boostManager.DisableBoost("Shield");
-        }
-    }
-
-    void HandleBoostCollision(GameObject boost)
-    {
-        boostManager.BoostEffect(boost);
-
-        Destroy(boost);
-    }
-    #endregion
-
     #region Effects
     // Movement speed
-    void SlowDown()
+    public void SlowDown()
     {
         moveSpeed /= 2;
     }
@@ -106,9 +55,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // Toggle shield
-    public void ToggleShield(bool isActive)
+    public void SetShield(bool isActive)
     {
         hasShield = isActive;
+    }
+
+    public bool GetShield()
+    {
+        return hasShield;
     }
     #endregion
 }

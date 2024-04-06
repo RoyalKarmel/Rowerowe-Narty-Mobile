@@ -6,7 +6,7 @@ public class Shooting : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform player;
-    public GameManager gameManager;
+    public TextManager textManager;
     public SoundEffects soundEffects;
     public BoostManager boostManager;
 
@@ -33,7 +33,7 @@ public class Shooting : MonoBehaviour
     {
         ammo--;
         soundEffects.PlayShootSound();
-        gameManager.SetAmmoText(ammo);
+        textManager.SetAmmoText(ammo);
 
         Vector3 startPosition = player.position;
         Instantiate(bulletPrefab, startPosition, Quaternion.Euler(0, 0, rotationAngle));

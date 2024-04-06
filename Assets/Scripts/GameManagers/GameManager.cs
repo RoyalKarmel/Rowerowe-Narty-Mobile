@@ -1,25 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public AdsManager ads;
-    public TMP_Text scoreText;
-    public TMP_Text bestScoreText;
-    public TMP_Text gameOverScoreText;
-    public TMP_Text gameOverBestScoreText;
-    public TMP_Text coinsText;
-    public TMP_Text ammoText;
+    public TextManager textManager;
     public GameObject gameOverScreen;
     public GameObject[] uiToHide;
 
     public float scoreMultiplier = 1;
     public int collectedCoins = 0;
     private float currentScore = 0;
-    private int currentBestScore = 0;
+    private int bestScore = 0;
     private int coins = 0;
     private string bestScoreKey = "BestScore";
     private string coinsKey = "Coins";
@@ -28,60 +20,29 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(bestScoreKey))
         {
-            currentBestScore = PlayerPrefs.GetInt(bestScoreKey);
-            SetBestScoreText();
+            bestScore = PlayerPrefs.GetInt(bestScoreKey);
+            textManager.SetBestScoreText(bestScore);
         }
 
         if (PlayerPrefs.HasKey(coinsKey))
         {
             coins = PlayerPrefs.GetInt(coinsKey);
-            SetCoinsText();
+            textManager.SetCoinsText(coins);
         }
     }
 
     void Update()
     {
         currentScore += scoreMultiplier * Time.deltaTime;
-        SetScoreText();
+        textManager.SetScoreText(currentScore);
     }
-
-    #region Set Text
-    // Set scores text
-    void SetBestScoreText()
-    {
-        bestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
-    }
-
-    void SetScoreText()
-    {
-        scoreText.text = "Score: <color=#f21010>" + Mathf.RoundToInt(currentScore).ToString() + "</color>";
-    }
-
-    void SetGameOverText()
-    {
-        gameOverScoreText.text = "Score: <color=#f21010>" + Mathf.RoundToInt(currentScore).ToString() + "</color>";
-        gameOverBestScoreText.text = "Best Score: <color=#f21010>" + currentBestScore.ToString() + "</color>";
-    }
-
-    // Set coins text
-    void SetCoinsText()
-    {
-        coinsText.text = coins.ToString();
-    }
-
-    // Set ammo text
-    public void SetAmmoText(int ammo)
-    {
-        ammoText.text = ammo.ToString();
-    }
-    #endregion
 
     // Update coins
     public void SetCoins(int collectedCoins)
     {
         coins += collectedCoins;
         PlayerPrefs.SetInt(coinsKey, coins);
-        SetCoinsText();
+        textManager.SetCoinsText(coins);
     }
 
     #region Game Over
@@ -93,13 +54,13 @@ public class GameManager : MonoBehaviour
         ads.ShowBanner();
         ads.PlayInterstitialAd();
 
-        if (currentScore > currentBestScore)
+        if (currentScore > bestScore)
         {
-            currentBestScore = Mathf.RoundToInt(currentScore);
-            PlayerPrefs.SetInt(bestScoreKey, currentBestScore);
+            bestScore = Mathf.RoundToInt(currentScore);
+            PlayerPrefs.SetInt(bestScoreKey, bestScore);
         }
 
-        SetGameOverText();
+        textManager.SetGameOverText(currentScore, bestScore);
         gameOverScreen.SetActive(true);
 
         // Hide UI
@@ -117,7 +78,6 @@ public class GameManager : MonoBehaviour
                 Destroy(obj);
             }
         }
-
     }
 
     // Restart game

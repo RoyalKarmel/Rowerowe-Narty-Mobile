@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 5279735}
   - component: {fileID: 5279733}
   - component: {fileID: 5279734}
+  - component: {fileID: 5279736}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -305,7 +306,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 78b8ce38698163743847cdd6e4ff13de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -346,8 +347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalSpeed: 7
   joystick: {fileID: 1542493801}
-  gameManager: {fileID: 1842339212}
-  boostManager: {fileID: 1842339215}
   skins:
   - {fileID: 21300000, guid: 78b8ce38698163743847cdd6e4ff13de, type: 3}
   - {fileID: 21300000, guid: 8e22812ef66a6874ea5c5cd4e8d30b8b, type: 3}
@@ -393,6 +392,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5279736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a7814ab0494e4439412d4f9321629b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 5279733}
+  gameManager: {fileID: 1842339212}
+  boostManager: {fileID: 1701953617}
 --- !u!1 &60038984
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +938,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842339214}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shooting, Assembly-CSharp
         m_MethodName: ShootDown
         m_Mode: 1
@@ -1295,7 +1309,7 @@ GameObject:
   - component: {fileID: 578670460}
   - component: {fileID: 578670461}
   m_Layer: 0
-  m_Name: PuddleGenerator
+  m_Name: Puddle Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1454,7 +1468,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842339214}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shooting, Assembly-CSharp
         m_MethodName: ShootUp
         m_Mode: 1
@@ -1941,7 +1955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 889949062}
   m_Layer: 0
-  m_Name: GameManagers
+  m_Name: Game Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1962,6 +1976,7 @@ Transform:
   m_Children:
   - {fileID: 1852678632}
   - {fileID: 1842339213}
+  - {fileID: 1701953615}
   - {fileID: 2077324213}
   - {fileID: 887186370}
   m_Father: {fileID: 0}
@@ -2049,7 +2064,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842339214}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shooting, Assembly-CSharp
         m_MethodName: ShootRight
         m_Mode: 1
@@ -2110,7 +2125,7 @@ GameObject:
   - component: {fileID: 1017248351}
   - component: {fileID: 1017248352}
   m_Layer: 0
-  m_Name: EnemyGenerator
+  m_Name: Enemy Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3462,7 +3477,7 @@ GameObject:
   - component: {fileID: 1375574376}
   - component: {fileID: 1375574375}
   m_Layer: 0
-  m_Name: BoostGenerator
+  m_Name: Boost Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4104,7 +4119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1621241477}
   m_Layer: 0
-  m_Name: PoliceGeneratorLeft
+  m_Name: Police Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4125,6 +4140,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1792547210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1701953614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701953615}
+  - component: {fileID: 1701953617}
+  - component: {fileID: 1701953616}
+  - component: {fileID: 1701953618}
+  m_Layer: 0
+  m_Name: Boost Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1701953615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701953614}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 889949062}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1701953616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701953614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596dfcd3049e887408debc436ba4fd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2300148447624063582, guid: b571d60227b427b4894f00512f7e73b9, type: 3}
+  player: {fileID: 5279732}
+  textManager: {fileID: 1842339214}
+  soundEffects: {fileID: 887186371}
+  boostManager: {fileID: 1701953617}
+  ammo: 20
+--- !u!114 &1701953617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701953614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46575b6962ac5754291236f9b61763dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostEffect: {fileID: 1701953618}
+  multiplierImage: {fileID: 1537569290}
+  speedImage: {fileID: 1732810247}
+  shieldImage: {fileID: 1238517154}
+  bombImage: {fileID: 478014708}
+  pistolImage: {fileID: 1746505381}
+  soundEffects: {fileID: 887186371}
+  gameManager: {fileID: 1842339212}
+  playerController: {fileID: 5279733}
+  shootingKeys: {fileID: 610499531}
+--- !u!114 &1701953618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701953614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded8d39de0fda084cbea2b8c1e632058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostManager: {fileID: 1701953617}
+  gameManager: {fileID: 1842339212}
+  textManager: {fileID: 1842339214}
+  shootingManager: {fileID: 1701953616}
+  playerController: {fileID: 5279733}
+  explosionPrefab: {fileID: 8506068593511204940, guid: 193ec1cfcdfda65499d27b541a94f026, type: 3}
+  boostDuration: 5
+  acceleration: 9
 --- !u!1 &1712506762
 GameObject:
   m_ObjectHideFlags: 0
@@ -4473,7 +4582,7 @@ GameObject:
   - component: {fileID: 1792547210}
   - component: {fileID: 1792547211}
   m_Layer: 0
-  m_Name: PoliceGenerators
+  m_Name: Police Generators
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4526,10 +4635,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1842339213}
   - component: {fileID: 1842339212}
-  - component: {fileID: 1842339215}
   - component: {fileID: 1842339214}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4548,12 +4656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ads: {fileID: 1852678631}
-  scoreText: {fileID: 60038986}
-  bestScoreText: {fileID: 1335405910}
-  gameOverScoreText: {fileID: 1538209480}
-  gameOverBestScoreText: {fileID: 91020095}
-  coinsText: {fileID: 1909596133}
-  ammoText: {fileID: 2086847169}
+  textManager: {fileID: 1842339214}
   gameOverScreen: {fileID: 1545115899}
   uiToHide:
   - {fileID: 1326879868}
@@ -4586,40 +4689,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1842339211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596dfcd3049e887408debc436ba4fd87, type: 3}
+  m_Script: {fileID: 11500000, guid: 3459998095d645844a4513046a7eb5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2300148447624063582, guid: b571d60227b427b4894f00512f7e73b9, type: 3}
-  player: {fileID: 5279732}
-  gameManager: {fileID: 1842339212}
-  soundEffects: {fileID: 887186371}
-  boostManager: {fileID: 1842339215}
-  ammo: 20
---- !u!114 &1842339215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1842339211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46575b6962ac5754291236f9b61763dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiplierImage: {fileID: 1537569290}
-  speedImage: {fileID: 1732810247}
-  shieldImage: {fileID: 1238517154}
-  bombImage: {fileID: 478014708}
-  pistolImage: {fileID: 1746505381}
-  soundEffects: {fileID: 887186371}
-  gameManager: {fileID: 1842339212}
-  shootingManager: {fileID: 1842339214}
-  playerController: {fileID: 5279733}
-  shootingKeys: {fileID: 610499531}
-  explosionPrefab: {fileID: 8506068593511204940, guid: 193ec1cfcdfda65499d27b541a94f026, type: 3}
-  boostDuration: 5
-  acceleration: 9
+  scoreText: {fileID: 60038986}
+  bestScoreText: {fileID: 1335405910}
+  gameOverScoreText: {fileID: 1538209480}
+  gameOverBestScoreText: {fileID: 91020095}
+  coinsText: {fileID: 1909596133}
+  ammoText: {fileID: 2086847169}
 --- !u!1 &1852670858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4946,7 +5024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1959372827}
   m_Layer: 0
-  m_Name: PoliceGeneratorRight
+  m_Name: Police Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5050,7 +5128,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842339214}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Shooting, Assembly-CSharp
         m_MethodName: ShootLeft
         m_Mode: 1
