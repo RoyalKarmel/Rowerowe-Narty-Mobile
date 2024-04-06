@@ -45,7 +45,6 @@ public class BoostManager : MonoBehaviour
                 break;
             case "Coin":
                 gameManager.SetCoins(1);
-                gameManager.collectedCoins++;
                 break;
             default:
                 break;
@@ -59,11 +58,11 @@ public class BoostManager : MonoBehaviour
         {
             case "Multiplier":
                 multiplierImage.SetActive(false);
-                gameManager.scoreMultiplier = 1;
+                gameManager.SetScoreMultiplier(1);
                 break;
             case "Speed":
                 speedImage.SetActive(false);
-                playerController.SetMoveSpeed();
+                playerController.SetAcceleration(false);
                 break;
             case "Shield":
                 shieldImage.SetActive(false);

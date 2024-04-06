@@ -61,7 +61,9 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
         if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
-            gameManager.SetCoins(gameManager.collectedCoins);
+
+            int doubleCoins = gameManager.GetCollectedCoins();
+            gameManager.SetCoins(doubleCoins);
         }
     }
 

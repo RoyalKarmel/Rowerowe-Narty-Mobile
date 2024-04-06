@@ -3,7 +3,7 @@ using UnityEngine;
 public class CollisionHandler : MonoBehaviour
 {
     public PlayerController playerController;
-    public GameManager gameManager;
+    public GameOver gameOver;
     public BoostManager boostManager;
 
     private AudioSource audioSource;
@@ -30,14 +30,14 @@ public class CollisionHandler : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Puddle"))
-            playerController.SetMoveSpeed();
+            playerController.SetMoveSpeed(playerController.normalSpeed);
     }
 
     // Handle collision
     void HandleObstacleCollision(GameObject obstacle)
     {
         if (!playerController.GetShield())
-            gameManager.GameOver();
+            gameOver.GameOverScreen();
         else
         {
             Destroy(obstacle);

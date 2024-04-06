@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 5279733}
-  gameManager: {fileID: 1842339212}
+  gameOver: {fileID: 1842339215}
   boostManager: {fileID: 1701953617}
 --- !u!1 &60038984
 GameObject:
@@ -1669,8 +1669,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842339212}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1842339215}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
         m_MethodName: BackToMenu
         m_Mode: 1
         m_Arguments:
@@ -4352,8 +4352,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1842339212}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 1842339215}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -4636,6 +4636,7 @@ GameObject:
   - component: {fileID: 1842339213}
   - component: {fileID: 1842339212}
   - component: {fileID: 1842339214}
+  - component: {fileID: 1842339215}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -4655,16 +4656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11746c8d0bd287c44bcfd9d705dba616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ads: {fileID: 1852678631}
   textManager: {fileID: 1842339214}
-  gameOverScreen: {fileID: 1545115899}
-  uiToHide:
-  - {fileID: 1326879868}
-  - {fileID: 610499531}
-  - {fileID: 208987052}
-  - {fileID: 5279729}
-  scoreMultiplier: 1
-  collectedCoins: 0
 --- !u!4 &1842339213
 Transform:
   m_ObjectHideFlags: 0
@@ -4698,6 +4690,26 @@ MonoBehaviour:
   gameOverBestScoreText: {fileID: 91020095}
   coinsText: {fileID: 1909596133}
   ammoText: {fileID: 2086847169}
+--- !u!114 &1842339215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842339211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f550335a0e1d7b499f78b95ce798102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ads: {fileID: 1852678631}
+  gameOverScreen: {fileID: 1545115899}
+  uiToHide:
+  - {fileID: 208987052}
+  - {fileID: 1326879868}
+  - {fileID: 610499531}
+  textManager: {fileID: 1842339214}
+  gameManager: {fileID: 1842339212}
 --- !u!1 &1852670858
 GameObject:
   m_ObjectHideFlags: 0

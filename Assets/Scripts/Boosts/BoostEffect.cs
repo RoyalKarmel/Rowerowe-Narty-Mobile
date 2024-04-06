@@ -11,12 +11,11 @@ public class BoostEffect : MonoBehaviour
     public ParticleSystem explosionPrefab;
 
     public int boostDuration = 5;
-    public float acceleration = 9f;
 
     // Score multiplier
     public void Multiplier()
     {
-        gameManager.scoreMultiplier = 2;
+        gameManager.SetScoreMultiplier(2);
         Invoke("ResetMultiplier", boostDuration);
     }
 
@@ -28,7 +27,7 @@ public class BoostEffect : MonoBehaviour
     // Speed
     public void Speed()
     {
-        playerController.SetMoveSpeed(acceleration);
+        playerController.SetAcceleration(true);
         Invoke("ResetSpeed", boostDuration);
     }
 
