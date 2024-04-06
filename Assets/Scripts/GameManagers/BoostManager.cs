@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class BoostManager : MonoBehaviour
 {
-    public SoundManager soundManager;
     public GameObject multiplierImage;
     public GameObject speedImage;
     public GameObject shieldImage;
     public GameObject bombImage;
     public GameObject pistolImage;
 
+    public SoundEffects soundEffects;
     public GameManager gameManager;
     public Shooting shootingManager;
     public PlayerController playerController;
@@ -21,7 +21,7 @@ public class BoostManager : MonoBehaviour
     // Show boost UI & play sound
     public void BoostEffect(string boostTag)
     {
-        soundManager.PlayBoostSound(boostTag);
+        soundEffects.PlayBoostSound(boostTag);
 
         switch (boostTag)
         {
@@ -70,7 +70,7 @@ public class BoostManager : MonoBehaviour
                 break;
             case "Shield":
                 shieldImage.SetActive(false);
-                soundManager.PlayBoostSound(boostTag);
+                soundEffects.PlayBoostSound(boostTag);
                 break;
             case "Bomb":
                 bombImage.SetActive(false);

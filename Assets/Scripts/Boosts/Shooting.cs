@@ -7,7 +7,7 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform player;
     public GameManager gameManager;
-    public SoundManager soundManager;
+    public SoundEffects soundEffects;
     public BoostManager boostManager;
 
     public int ammo = 20;
@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour
     void Shoot(float rotationAngle)
     {
         ammo--;
-        soundManager.PlayShootSound();
+        soundEffects.PlayShootSound();
         gameManager.SetAmmoText(ammo);
 
         Vector3 startPosition = player.position;
