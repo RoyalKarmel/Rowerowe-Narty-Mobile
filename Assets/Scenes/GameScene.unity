@@ -4779,8 +4779,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1959372827}
   - {fileID: 1621241477}
+  - {fileID: 1959372827}
   m_Father: {fileID: 1712506763}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1792547211
@@ -4796,11 +4796,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   policeGenerators:
-  - {fileID: 1959372826}
   - {fileID: 1621241476}
-  policePrefabs:
-  - {fileID: 6851452366316223757, guid: 3591e30556809e945855120bb4a0f199, type: 3}
-  - {fileID: 5161400119076822502, guid: faae045f2e50d7f4f9877af241a430fe, type: 3}
+  - {fileID: 1959372826}
+  policePrefab: {fileID: 6851452366316223757, guid: 3591e30556809e945855120bb4a0f199, type: 3}
   spawnInterval: 10
   heightOffset: 3
 --- !u!1 &1842339211
