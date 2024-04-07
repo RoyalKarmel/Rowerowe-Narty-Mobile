@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Transform player;
+    public Transform pistol;
     public TextManager textManager;
     public SoundEffects soundEffects;
     public BoostManager boostManager;
@@ -35,7 +35,7 @@ public class Shooting : MonoBehaviour
         soundEffects.PlayShootSound();
         textManager.SetAmmoText(ammo);
 
-        Vector3 startPosition = player.position;
+        Vector3 startPosition = pistol.position;
         Instantiate(bulletPrefab, startPosition, Quaternion.Euler(0, 0, rotationAngle));
 
         if (ammo == 0) boostManager.DisableBoost("Pistol");

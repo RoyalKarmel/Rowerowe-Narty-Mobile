@@ -8,7 +8,7 @@ public class BoostManager : MonoBehaviour
     public GameObject speedImage;
     public GameObject shieldImage;
     public GameObject bombImage;
-    public GameObject pistolImage;
+    public GameObject[] pistolImages;
 
     public SoundEffects soundEffects;
     public GameManager gameManager;
@@ -39,7 +39,10 @@ public class BoostManager : MonoBehaviour
                 boostEffect.Bomb(boost);
                 break;
             case "Pistol":
-                pistolImage.SetActive(true);
+                foreach (GameObject pistolImg in pistolImages)
+                {
+                    pistolImg.SetActive(true);
+                }
                 shootingKeys.SetActive(true);
                 boostEffect.Pistol();
                 break;
@@ -72,7 +75,10 @@ public class BoostManager : MonoBehaviour
                 bombImage.SetActive(false);
                 break;
             case "Pistol":
-                pistolImage.SetActive(false);
+                foreach (GameObject pistolImg in pistolImages)
+                {
+                    pistolImg.SetActive(true);
+                }
                 shootingKeys.SetActive(false);
                 break;
             default:
