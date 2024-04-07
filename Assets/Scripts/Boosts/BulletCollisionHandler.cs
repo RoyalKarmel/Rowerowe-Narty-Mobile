@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletCollisionHandler : MonoBehaviour
 {
     // Dead zones
-    public float deadZoneTop = 7f;
-    public float deadZoneBottom = -7f;
-    public float deadZoneRight = 13f;
-    public float deadZoneLeft = -13f;
+    public float deadZoneVertical = 7f;
+    public float deadZoneHorizontal = 13f;
 
-    public float bulletSpeed = 5f;
+    public float bulletSpeed = 7f;
 
     private float rotationAngle;
 
@@ -30,33 +26,15 @@ public class BulletCollisionHandler : MonoBehaviour
 
     void Update()
     {
-        switch (rotationAngle)
-        {
-            case 0f:
-                transform.position = transform.position + (Vector3.up * bulletSpeed) * Time.deltaTime;
-                break;
-
-            case 90f:
-                transform.position = transform.position + (Vector3.left * bulletSpeed) * Time.deltaTime;
-                break;
-
-            case 180f:
-                transform.position = transform.position + (Vector3.down * bulletSpeed) * Time.deltaTime;
-                break;
-
-            case 270f:
-                transform.position = transform.position + (Vector3.right * bulletSpeed) * Time.deltaTime;
-                break;
-
-            default:
-                break;
-        }
+        Vector3 moveDirection = Quaternion.Euler(0, 0, rotationAngle) * Vector3.up;
+        transform.position += moveDirection * bulletSpeed * Time.deltaTime;
 
         // Destroy bullet when in dead zone
-        if (gameObject.transform.position.y < deadZoneBottom ||
-        gameObject.transform.position.y > deadZoneTop ||
-        gameObject.transform.position.x < deadZoneLeft ||
-        gameObject.transform.position.x > deadZoneRight)
+        if (transform.position.y < -deadZoneVertical ||
+            transform.position.y > deadZoneVertical ||
+            transform.position.x < -deadZoneHorizontal ||
+            transform.position.x > deadZoneHorizontal
+        )
         {
             Destroy(gameObject);
         }

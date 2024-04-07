@@ -1134,8 +1134,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 5279732}
     m_Modifications:
     - target: {fileID: 2860227012681795826, guid: 5ebe198fa906fdb4a9eb276662c6f96d, type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 0
+      propertyPath: lengthInSec
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4053435550184149220, guid: 5ebe198fa906fdb4a9eb276662c6f96d, type: 3}
       propertyPath: m_Name
@@ -1185,10 +1185,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 5279731}
-    - target: {fileID: 6320031869334458672, guid: 5ebe198fa906fdb4a9eb276662c6f96d, type: 3}
-      propertyPath: tracesParticles
-      value: 
-      objectReference: {fileID: 477779722}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
