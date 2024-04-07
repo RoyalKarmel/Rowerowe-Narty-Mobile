@@ -3,16 +3,15 @@ using UnityEngine;
 public class BoostEffect : MonoBehaviour
 {
     public BoostManager boostManager;
-
     public GameManager gameManager;
     public TextManager textManager;
     public Shooting shootingManager;
     public PlayerController playerController;
     public ParticleSystem explosionPrefab;
-
+    public ParticleSystem movementTraces;
     public int boostDuration = 5;
 
-    // Score multiplier
+    #region  Score multiplier
     public void Multiplier()
     {
         gameManager.SetScoreMultiplier(2);
@@ -23,26 +22,36 @@ public class BoostEffect : MonoBehaviour
     {
         boostManager.DisableBoost("Multiplier");
     }
+    #endregion
 
-    // Speed
+    #region  Speed
     public void Speed()
     {
         playerController.SetAcceleration(true);
+
+        var emission = movementTraces.emission;
+        emission.enabled = true;
+
         Invoke("ResetSpeed", boostDuration);
     }
 
     public void ResetSpeed()
     {
+        var emission = movementTraces.emission;
+        emission.enabled = false;
+
         boostManager.DisableBoost("Speed");
     }
+    #endregion
 
-    // Shield
+    #region  Shield
     public void Shield()
     {
         playerController.SetShield(true);
     }
+    #endregion
 
-    // Bomb
+    #region  Bomb
     public void Bomb(GameObject bomb)
     {
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
@@ -63,11 +72,13 @@ public class BoostEffect : MonoBehaviour
     {
         boostManager.DisableBoost("Bomb");
     }
+    #endregion
 
-    // Pistol
+    #region  Pistol
     public void Pistol()
     {
         shootingManager.ammo = 20;
         textManager.SetAmmoText(shootingManager.ammo);
     }
+    #endregion
 }
