@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "213522479763",
-    "project_id": "rowerowe-narty",
-    "storage_bucket": "rowerowe-narty.appspot.com"
+    "project_number": "362944384951",
+    "project_id": "rowerowe-narty-af67d",
+    "storage_bucket": "rowerowe-narty-af67d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:213522479763:android:58431689a9a43d86142b66",
+        "mobilesdk_app_id": "1:362944384951:android:fb2ce676790ae79086a232",
         "android_client_info": {
           "package_name": "com.royalkarmel.com.unity.template.mobile2D"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "213522479763-s7e8orcsorf41jgqmvkm16e6rrmelucb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDUvt-6qvYQAfqJCuCjvBnNl3JLcomyfAk"
+          "current_key": "AIzaSyAGFb6506E8qyViXuc22IZtbXVTs04FgXU"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "213522479763-s7e8orcsorf41jgqmvkm16e6rrmelucb.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

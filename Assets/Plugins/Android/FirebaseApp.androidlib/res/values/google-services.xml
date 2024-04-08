@@ -1,10 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
-  <string name="gcm_defaultSenderId" translatable="false">213522479763</string>
-  <string name="google_storage_bucket" translatable="false">rowerowe-narty.appspot.com</string>
-  <string name="project_id" translatable="false">rowerowe-narty</string>
-  <string name="google_api_key" translatable="false">AIzaSyDUvt-6qvYQAfqJCuCjvBnNl3JLcomyfAk</string>
-  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDUvt-6qvYQAfqJCuCjvBnNl3JLcomyfAk</string>
-  <string name="google_app_id" translatable="false">1:213522479763:android:58431689a9a43d86142b66</string>
-  <string name="default_web_client_id" translatable="false">213522479763-s7e8orcsorf41jgqmvkm16e6rrmelucb.apps.googleusercontent.com</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id">
+  <string name="gcm_defaultSenderId" translatable="false">362944384951</string>
+  <string name="google_storage_bucket" translatable="false">rowerowe-narty-af67d.appspot.com</string>
+  <string name="project_id" translatable="false">rowerowe-narty-af67d</string>
+  <string name="google_api_key" translatable="false">AIzaSyAGFb6506E8qyViXuc22IZtbXVTs04FgXU</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAGFb6506E8qyViXuc22IZtbXVTs04FgXU</string>
+  <string name="google_app_id" translatable="false">1:362944384951:android:fb2ce676790ae79086a232</string>
 </resources>
