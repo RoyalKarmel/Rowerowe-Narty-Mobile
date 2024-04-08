@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4879187709940607965}
   - component: {fileID: 2347532770423060188}
   - component: {fileID: 2178164234379103245}
+  - component: {fileID: 4440115618813518777}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Obstacle
@@ -242,3 +243,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4440115618813518777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750625139901608708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad470740d4abe14eaf399dc0c39bb97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
