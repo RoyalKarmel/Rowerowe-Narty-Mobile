@@ -1520,7 +1520,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 4015253444107513571, guid: ba0044e7fd33e50409629860c7ff5cb6, type: 3}
-  - {fileID: 3424813138801455041, guid: 73857e9a4dc3f9f4dbe768344db33b33, type: 3}
   spawnInterval: 5
   widthOffset: 10
 --- !u!1 &610499531
