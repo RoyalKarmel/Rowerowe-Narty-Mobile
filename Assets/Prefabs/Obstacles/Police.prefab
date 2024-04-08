@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 452568110673189218}
   m_Layer: 7
   m_Name: Police
-  m_TagString: Obstacle
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

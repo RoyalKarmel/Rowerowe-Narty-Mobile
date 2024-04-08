@@ -4,15 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstacle
   - Coin
   - Multiplier
   - Pistol
   - Shield
   - Speed
-  - Puddle
   - Bullet
   - Bomb
+  - Enemy
+  - Stone
+  - Puddle
   layers:
   - Default
   - TransparentFX

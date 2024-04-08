@@ -11,13 +11,13 @@ public class CollisionHandler : MonoBehaviour
     // Check collision
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Obstacle") || other.gameObject.CompareTag("Puddle"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Puddle"))
         {
             audioSource = other.gameObject.GetComponent<AudioSource>();
             audioSource.Play();
 
-            if (other.gameObject.CompareTag("Obstacle"))
-                HandleObstacleCollision(other.gameObject);
+            if (other.gameObject.CompareTag("Enemy"))
+                HandleEnemyCollision(other.gameObject);
             else
                 playerController.SlowDown();
         }
@@ -34,13 +34,13 @@ public class CollisionHandler : MonoBehaviour
     }
 
     // Handle collision
-    void HandleObstacleCollision(GameObject obstacle)
+    void HandleEnemyCollision(GameObject enemy)
     {
         if (!playerController.GetShield())
             gameOver.GameOverScreen();
         else
         {
-            Destroy(obstacle);
+            Destroy(enemy);
             playerController.SetShield(false);
             boostManager.DisableBoost("Shield");
         }
