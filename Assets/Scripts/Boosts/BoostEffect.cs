@@ -54,7 +54,7 @@ public class BoostEffect : MonoBehaviour
     #region  Bomb
     public void Bomb(GameObject bomb)
     {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject obstacle in obstacles)
         {
