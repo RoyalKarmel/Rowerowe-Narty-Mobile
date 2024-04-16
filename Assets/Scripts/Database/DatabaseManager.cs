@@ -1,50 +1,114 @@
 using UnityEngine;
-using Firebase.Firestore;
-using Firebase.Extensions;
+using Firebase.Database;
+using System.Collections;
 using System;
-using System.Collections.Generic;
 
 public class DatabaseManager : MonoBehaviour
 {
-    Firebase.FirebaseApp app;
-    FirebaseFirestore database;
+    private string userID;
+    private DatabaseReference dbReference;
+
     void Start()
     {
-        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-        {
-            var dependencyStatus = task.Result;
-            if (dependencyStatus == Firebase.DependencyStatus.Available)
-            {
-                app = Firebase.FirebaseApp.DefaultInstance;
-                database = FirebaseFirestore.DefaultInstance;
-
-                UserData testUser = UserData.CreateUser("test2");
-                SaveUserDataToDatabase(testUser);
-            }
-            else
-            {
-                Debug.LogError(string.Format(
-                  "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-                // Firebase Unity SDK is not safe to use here.
-            }
-        });
+        userID = SystemInfo.deviceUniqueIdentifier;
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
-    void SaveUserDataToDatabase(UserData user)
+    // Create new user in database
+    public void CreateUser()
     {
-        DocumentReference userDocRef = database.Collection("users").Document(user.id);
-        Debug.Log($"user ref: {userDocRef}");
+        User newUser = new User(userID, "test1");
+        string json = JsonUtility.ToJson(newUser);
 
-        userDocRef.SetAsync(user).ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted)
-            {
-                Debug.LogError($"Failed to add user to database: {task.Exception}");
-            }
-            else
-            {
-                Debug.Log($"User added successfully with ID: {user.id}");
-            }
-        });
+        dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
+
+        Debug.Log("Created new user");
     }
+
+    #region UpdateUserInfo
+    // Update username
+    public void UpdateUserName()
+    {
+        dbReference.Child("users").Child(userID).Child("username").SetValueAsync("newName");
+        Debug.Log("Updated username");
+    }
+
+    // Update coins
+    public void UpdateUserCoins()
+    {
+        dbReference.Child("users").Child(userID).Child("coins").SetValueAsync(1);
+        Debug.Log("Updated coins");
+    }
+
+    // Update best score
+    public void UpdateUserScore()
+    {
+        dbReference.Child("users").Child(userID).Child("best_score").SetValueAsync(1);
+        Debug.Log("Updated best score");
+    }
+    #endregion
+
+    #region GetUserInfo
+    // Get user info from database
+    public void GetUserInfo()
+    {
+        StartCoroutine(GetUserName((string name) =>
+        {
+            Debug.Log("name:" + name);
+        }));
+
+        StartCoroutine(GetUserCoins((int coins) =>
+        {
+            Debug.Log("coins:" + coins);
+        }));
+
+        StartCoroutine(GetUserScore((int score) =>
+        {
+            Debug.Log("score:" + score);
+        }));
+    }
+
+    // IEnumerators
+    public IEnumerator GetUserName(Action<string> onCallback)
+    {
+        var userNameData = dbReference.Child("users").Child(userID).Child("username").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => userNameData.IsCompleted);
+
+        if (userNameData != null)
+        {
+            DataSnapshot snapshot = userNameData.Result;
+
+            onCallback.Invoke(snapshot.Value.ToString());
+        }
+    }
+
+    public IEnumerator GetUserCoins(Action<int> onCallback)
+    {
+        var userCoinsData = dbReference.Child("users").Child(userID).Child("coins").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => userCoinsData.IsCompleted);
+
+        if (userCoinsData != null)
+        {
+            DataSnapshot snapshot = userCoinsData.Result;
+
+            onCallback.Invoke(int.Parse(snapshot.Value.ToString()));
+        }
+    }
+
+    public IEnumerator GetUserScore(Action<int> onCallback)
+    {
+        var userScoreData = dbReference.Child("users").Child(userID).Child("best_score").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => userScoreData.IsCompleted);
+
+        if (userScoreData != null)
+        {
+            DataSnapshot snapshot = userScoreData.Result;
+
+            onCallback.Invoke(int.Parse(snapshot.Value.ToString()));
+        }
+    }
+    #endregion
 }

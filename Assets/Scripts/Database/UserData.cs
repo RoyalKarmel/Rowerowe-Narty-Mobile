@@ -1,23 +1,15 @@
-using System;
-using UnityEngine;
-
-[Serializable]
-public class UserData
+public class User
 {
     public string id;
-    public string name;
+    public string username;
     public int best_score;
     public int coins;
 
-    public static UserData CreateUser(string name)
+    public User(string id, string name)
     {
-        UserData user = new UserData
-        {
-            id = SystemInfo.deviceUniqueIdentifier,
-            name = name,
-            best_score = 0,
-            coins = 0
-        };
-        return user;
+        this.id = id;
+        this.username = name;
+        this.best_score = 0;
+        this.coins = 0;
     }
 }
