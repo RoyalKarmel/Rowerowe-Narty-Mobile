@@ -8,10 +8,15 @@ public class DatabaseManager : MonoBehaviour
     private string userID;
     private DatabaseReference dbReference;
 
-    void Start()
+    void Awake()
     {
         userID = SystemInfo.deviceUniqueIdentifier;
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+    }
+
+    public DatabaseReference GetDbReference()
+    {
+        return dbReference;
     }
 
     // Create new user in database
