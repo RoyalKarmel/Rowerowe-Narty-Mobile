@@ -15,25 +15,6 @@ public class UserInfoManager : MonoBehaviour
         userID = databaseManager.GetUserID();
     }
 
-    // Get user info from database
-    public void GetUserInfo()
-    {
-        StartCoroutine(GetUserName((string name) =>
-        {
-            Debug.Log("Username:" + name);
-        }));
-
-        StartCoroutine(GetUserCoins((int coins) =>
-        {
-            Debug.Log("Coins:" + coins);
-        }));
-
-        StartCoroutine(GetUserScore((int score) =>
-        {
-            Debug.Log("Score:" + score);
-        }));
-    }
-
     // Get username
     public IEnumerator GetUserName(Action<string> onCallback)
     {

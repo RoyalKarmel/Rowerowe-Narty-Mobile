@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Firebase.Database;
 using UnityEngine;
 
@@ -14,25 +16,46 @@ public class UpdateUser : MonoBehaviour
     }
 
     // Update username
-    public void UpdateUserName(string newName)
+    public IEnumerator UpdateUserName(string newName, Action<bool> onUpdateComplete)
     {
-        dbReference.Child("users").OrderByChild("username").EqualTo(newName).GetValueAsync().ContinueWith(task =>
-        {
-            if (task.IsFaulted)
-            {
-                Debug.LogError("Failed to check username availability: " + task.Exception);
-                return;
-            }
+        // Check accesibility of new username
+        var checkUsernameTask = dbReference.Child("users").OrderByChild("username").EqualTo(newName).GetValueAsync();
+        yield return new WaitUntil(() => checkUsernameTask.IsCompleted);
 
-            if (task.Result.Exists)
+        // Error handler
+        if (checkUsernameTask.IsFaulted)
+        {
+            Debug.LogError("Failed to check username availability: " + checkUsernameTask.Exception);
+            onUpdateComplete?.Invoke(false);
+            yield break;
+        }
+
+        // Check if new username exists
+        foreach (var childSnapshot in checkUsernameTask.Result.Children)
+        {
+            string existingUserID = childSnapshot.Child("id").Value.ToString();
+            if (existingUserID == userID)
             {
                 Debug.LogError("Username already exists.");
-                return;
+                onUpdateComplete?.Invoke(false);
+                yield break;
             }
+        }
 
-            dbReference.Child("users").Child(userID).Child("username").SetValueAsync(newName);
-            Debug.Log("Updated username");
-        });
+        // Update username in database
+        var updateUsernameTask = dbReference.Child("users").Child(userID).Child("username").SetValueAsync(newName);
+        yield return new WaitUntil(() => updateUsernameTask.IsCompleted);
+
+        // Error handler
+        if (updateUsernameTask.IsFaulted)
+        {
+            Debug.LogError("Failed to update username: " + updateUsernameTask.Exception);
+            onUpdateComplete?.Invoke(false);
+            yield break;
+        }
+
+        Debug.Log("Updated username to: " + newName);
+        onUpdateComplete?.Invoke(true);
     }
 
     // Update coins
