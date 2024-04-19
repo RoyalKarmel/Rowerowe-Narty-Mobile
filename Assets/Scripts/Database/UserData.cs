@@ -7,10 +7,10 @@ public class User
     public string username;
     public int best_score;
     public int coins;
-    public List<string> unlockedSkins;
-    public List<string> unlockedMusic;
-    public string activeSkin;
-    public string activeMusic;
+    public List<int> skins;
+    public List<int> musics;
+    public int activeSkinID;
+    public int activeMusicID;
 
     public User(string id, string name)
     {
@@ -18,13 +18,25 @@ public class User
         this.username = name;
         this.best_score = 0;
         this.coins = 0;
-        this.unlockedSkins = new List<string>();
-        this.unlockedMusic = new List<string>();
-        this.activeSkin = "default";
-        this.activeMusic = "default";
+        this.skins = new List<int>();
+        this.musics = new List<int>();
+        this.activeSkinID = 0;
+        this.activeMusicID = 0;
 
         // Add default items
-        this.unlockedSkins.Add("default");
-        this.unlockedMusic.Add("default");
+        for (int i = 0; i <= 3; i++)
+        {
+            // Add skin IDs
+            if (i == 0)
+                this.skins.Add(1);
+            else
+                this.skins.Add(0);
+
+            // Add music IDs
+            if (i == 0)
+                this.musics.Add(1);
+            else
+                this.musics.Add(0);
+        }
     }
 }

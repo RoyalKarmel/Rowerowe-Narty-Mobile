@@ -59,4 +59,26 @@ public class UserInfoManager : MonoBehaviour
             onCallback.Invoke(int.Parse(snapshot.Value.ToString()));
         }
     }
+
+    // Get user items (skins or music) based on itemType (0 for skins, 1 for music)
+    public IEnumerator GetUserItems(int itemType, Action<int[]> onCallback)
+    {
+        string itemPath = (itemType == 0) ? "skins" : "music";
+        var userItemsData = dbReference.Child("users").Child(userID).Child(itemPath).GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => userItemsData.IsCompleted);
+
+        if (userItemsData != null)
+        {
+            DataSnapshot snapshot = userItemsData.Result;
+            int[] items = new int[snapshot.ChildrenCount];
+            int i = 0;
+            foreach (var childSnapshot in snapshot.Children)
+            {
+                items[i] = int.Parse(childSnapshot.Value.ToString());
+                i++;
+            }
+            onCallback.Invoke(items);
+        }
+    }
 }

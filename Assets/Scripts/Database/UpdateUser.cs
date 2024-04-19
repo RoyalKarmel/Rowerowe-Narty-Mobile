@@ -71,4 +71,11 @@ public class UpdateUser : MonoBehaviour
         dbReference.Child("users").Child(userID).Child("best_score").SetValueAsync(best_score);
         Debug.Log("Updated best score");
     }
+
+    // Add item
+    public void AddItem(int itemID, string category)
+    {
+        dbReference.Child("users").Child(userID).Child(category).Child(itemID.ToString()).SetValueAsync(1);
+        Debug.Log("Added " + category + " with ID: " + itemID);
+    }
 }
