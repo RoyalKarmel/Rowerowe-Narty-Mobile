@@ -15,15 +15,19 @@ public class StoreManager : MonoBehaviour
     public List<ItemData> items;
 
     [Header("Keys")]
+    private int coins;
     private string coinsKey = "Coins";
     public string itemKey = "Item";
     public string selectedItemKey = "SelectedItemID";
 
-    // private DatabaseReference dbReference;
-    // private string userID;
+    private DatabaseReference dbReference;
+    private string deviceID;
 
     void Start()
     {
+        dbReference = databaseManager.GetDbReference();
+        deviceID = databaseManager.GetDeviceID();
+
         UpdateStyles();
     }
 
@@ -44,7 +48,16 @@ public class StoreManager : MonoBehaviour
 
     public void BuyItem(int itemID, int itemCost)
     {
-        int coins = PlayerPrefs.GetInt(coinsKey, 0);
+        // Get coins from player prefs or database
+        if (databaseManager.GetUserExistence())
+        {
+            StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
+            {
+                coins = userCoins;
+            }));
+        }
+        else
+            coins = PlayerPrefs.GetInt(coinsKey, 0);
 
         if (coins < itemCost)
         {

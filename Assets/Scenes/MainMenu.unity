@@ -1586,6 +1586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c285574977bf3114f9319e287ee8942c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  databaseManager: {fileID: 1923464557}
   userInfoManager: {fileID: 1923464558}
   coinsText: {fileID: 144566793}
 --- !u!1 &379078675

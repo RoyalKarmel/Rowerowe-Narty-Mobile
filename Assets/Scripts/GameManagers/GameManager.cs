@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public TextManager textManager;
 
     [Header("Database")]
+    public DatabaseManager databaseManager;
     public UserInfoManager userInfoManager;
     public UpdateUser updateUser;
 
@@ -14,33 +15,33 @@ public class GameManager : MonoBehaviour
     private int coins = 0;
     private int collectedCoins = 0;
     private string bestScoreKey = "BestScore";
-    // private string coinsKey = "Coins";
+    private string coinsKey = "Coins";
 
     void Start()
     {
-        StartCoroutine(userInfoManager.GetUserScore((int userScore) =>
+        if (databaseManager.GetUserExistence())
         {
-            bestScore = userScore;
-            textManager.SetBestScoreText(bestScore);
-        }));
+            StartCoroutine(userInfoManager.GetUserScore((int userScore) =>
+            {
+                bestScore = userScore;
+            }));
 
-        StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
+            StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
+            {
+                coins = userCoins;
+            }));
+        }
+        else
         {
-            coins = userCoins;
-            textManager.SetCoinsText(coins);
-        }));
+            if (PlayerPrefs.HasKey(bestScoreKey))
+                bestScore = PlayerPrefs.GetInt(bestScoreKey);
 
-        // if (PlayerPrefs.HasKey(bestScoreKey))
-        // {
-        //     bestScore = PlayerPrefs.GetInt(bestScoreKey);
-        //     textManager.SetBestScoreText(bestScore);
-        // }
+            if (PlayerPrefs.HasKey(coinsKey))
+                coins = PlayerPrefs.GetInt(coinsKey);
+        }
 
-        // if (PlayerPrefs.HasKey(coinsKey))
-        // {
-        //     coins = PlayerPrefs.GetInt(coinsKey);
-        //     textManager.SetCoinsText(coins);
-        // }
+        textManager.SetBestScoreText(bestScore);
+        textManager.SetCoinsText(coins);
     }
 
     void Update()
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
     public void SetCoins(int collectedCoins)
     {
         coins += collectedCoins;
-        // PlayerPrefs.SetInt(coinsKey, coins);
+        PlayerPrefs.SetInt(coinsKey, coins);
         updateUser.UpdateUserCoins(coins);
         textManager.SetCoinsText(coins);
 

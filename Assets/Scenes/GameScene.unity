@@ -4980,6 +4980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textManager: {fileID: 1842339214}
+  databaseManager: {fileID: 436744961}
   userInfoManager: {fileID: 436744960}
   updateUser: {fileID: 436744959}
 --- !u!4 &1842339213
@@ -5009,7 +5010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3459998095d645844a4513046a7eb5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userInfoManager: {fileID: 436744960}
   scoreText: {fileID: 60038986}
   bestScoreText: {fileID: 1335405910}
   gameOverScoreText: {fileID: 1538209480}
@@ -5028,6 +5028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f550335a0e1d7b499f78b95ce798102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  databaseManager: {fileID: 436744961}
   ads: {fileID: 1852678631}
   gameOverScreen: {fileID: 1545115899}
   uiToHide:

@@ -3,17 +3,25 @@ using UnityEngine;
 
 public class StorePage : MonoBehaviour
 {
+    public DatabaseManager databaseManager;
     public UserInfoManager userInfoManager;
     public TMP_Text coinsText;
 
-    // private string coinsKey = "Coins";
+    private string coinsKey = "Coins";
 
     void Start()
     {
-        // int coins = PlayerPrefs.GetInt(coinsKey, 0);
-        StartCoroutine(userInfoManager.GetUserCoins((int coins) =>
+        if (databaseManager.GetUserExistence())
         {
+            StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
+            {
+                coinsText.text = userCoins.ToString();
+            }));
+        }
+        else
+        {
+            int coins = PlayerPrefs.GetInt(coinsKey, 0);
             coinsText.text = coins.ToString();
-        }));
+        }
     }
 }
