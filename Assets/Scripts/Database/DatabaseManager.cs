@@ -5,6 +5,7 @@ public class DatabaseManager : MonoBehaviour
 {
     private string userID;
     private DatabaseReference dbReference;
+    private bool userExists = true;
 
     void Awake()
     {
@@ -17,8 +18,8 @@ public class DatabaseManager : MonoBehaviour
         CheckUserExistence();
     }
 
-    #region CreateUser
-    void CheckUserExistence()
+    #region Check User Existence
+    public void CheckUserExistence()
     {
         dbReference.Child("users").Child(userID).GetValueAsync().ContinueWith(task =>
         {
@@ -28,19 +29,8 @@ public class DatabaseManager : MonoBehaviour
                 return;
             }
             if (!task.Result.Exists)
-                CreateUser();
+                userExists = false;
         });
-    }
-
-    // Create new user in database
-    void CreateUser()
-    {
-        User newUser = new User(userID, "test");
-        string json = JsonUtility.ToJson(newUser);
-
-        dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
-
-        Debug.Log("Created new user");
     }
     #endregion
 
@@ -53,6 +43,11 @@ public class DatabaseManager : MonoBehaviour
     public string GetUserID()
     {
         return userID;
+    }
+
+    public bool GetUserExistence()
+    {
+        return userExists;
     }
     #endregion
 }
