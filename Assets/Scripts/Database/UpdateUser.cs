@@ -7,12 +7,12 @@ public class UpdateUser : MonoBehaviour
 {
     public DatabaseManager databaseManager;
     private DatabaseReference dbReference;
-    private string userID;
+    private string deviceID;
 
     void Start()
     {
         dbReference = databaseManager.GetDbReference();
-        userID = databaseManager.GetUserID();
+        deviceID = databaseManager.GetDeviceID();
     }
 
     // Update username
@@ -34,7 +34,7 @@ public class UpdateUser : MonoBehaviour
         foreach (var childSnapshot in checkUsernameTask.Result.Children)
         {
             string existingUserID = childSnapshot.Child("id").Value.ToString();
-            if (existingUserID == userID)
+            if (existingUserID == deviceID)
             {
                 Debug.LogError("Username already exists.");
                 onUpdateComplete?.Invoke(false);
@@ -43,7 +43,7 @@ public class UpdateUser : MonoBehaviour
         }
 
         // Update username in database
-        var updateUsernameTask = dbReference.Child("users").Child(userID).Child("username").SetValueAsync(newName);
+        var updateUsernameTask = dbReference.Child("users").Child(deviceID).Child("username").SetValueAsync(newName);
         yield return new WaitUntil(() => updateUsernameTask.IsCompleted);
 
         // Error handler
@@ -61,21 +61,21 @@ public class UpdateUser : MonoBehaviour
     // Update coins
     public void UpdateUserCoins(int coins)
     {
-        dbReference.Child("users").Child(userID).Child("coins").SetValueAsync(coins);
+        dbReference.Child("users").Child(deviceID).Child("coins").SetValueAsync(coins);
         Debug.Log("Updated coins");
     }
 
     // Update best score
     public void UpdateUserScore(int best_score)
     {
-        dbReference.Child("users").Child(userID).Child("best_score").SetValueAsync(best_score);
+        dbReference.Child("users").Child(deviceID).Child("best_score").SetValueAsync(best_score);
         Debug.Log("Updated best score");
     }
 
     // Add item
     public void AddItem(int itemID, string category)
     {
-        dbReference.Child("users").Child(userID).Child(category).Child(itemID.ToString()).SetValueAsync(1);
+        dbReference.Child("users").Child(deviceID).Child(category).Child(itemID.ToString()).SetValueAsync(1);
         Debug.Log("Added " + category + " with ID: " + itemID);
     }
 }

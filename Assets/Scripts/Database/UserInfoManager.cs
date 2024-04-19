@@ -7,18 +7,18 @@ public class UserInfoManager : MonoBehaviour
 {
     public DatabaseManager databaseManager;
     private DatabaseReference dbReference;
-    private string userID;
+    private string deviceID;
 
     void Start()
     {
         dbReference = databaseManager.GetDbReference();
-        userID = databaseManager.GetUserID();
+        deviceID = databaseManager.GetDeviceID();
     }
 
     // Get username
     public IEnumerator GetUserName(Action<string> onCallback)
     {
-        var userNameData = dbReference.Child("users").Child(userID).Child("username").GetValueAsync();
+        var userNameData = dbReference.Child("users").Child(deviceID).Child("username").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userNameData.IsCompleted);
 
@@ -33,7 +33,7 @@ public class UserInfoManager : MonoBehaviour
     // Get user coins
     public IEnumerator GetUserCoins(Action<int> onCallback)
     {
-        var userCoinsData = dbReference.Child("users").Child(userID).Child("coins").GetValueAsync();
+        var userCoinsData = dbReference.Child("users").Child(deviceID).Child("coins").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userCoinsData.IsCompleted);
 
@@ -48,7 +48,7 @@ public class UserInfoManager : MonoBehaviour
     // Get user best score
     public IEnumerator GetUserScore(Action<int> onCallback)
     {
-        var userScoreData = dbReference.Child("users").Child(userID).Child("best_score").GetValueAsync();
+        var userScoreData = dbReference.Child("users").Child(deviceID).Child("best_score").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userScoreData.IsCompleted);
 
@@ -64,7 +64,7 @@ public class UserInfoManager : MonoBehaviour
     public IEnumerator GetUserItems(int itemType, Action<int[]> onCallback)
     {
         string itemPath = (itemType == 0) ? "skins" : "music";
-        var userItemsData = dbReference.Child("users").Child(userID).Child(itemPath).GetValueAsync();
+        var userItemsData = dbReference.Child("users").Child(deviceID).Child(itemPath).GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userItemsData.IsCompleted);
 

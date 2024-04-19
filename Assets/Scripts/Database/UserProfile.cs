@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Firebase.Database;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +6,7 @@ public class UserProfile : MonoBehaviour
 {
     [Header("Database")]
     public DatabaseManager databaseManager;
+    public AuthManager authManager;
     public UserInfoManager userInfoManager;
     public UpdateUser updateUser;
 
@@ -22,41 +21,21 @@ public class UserProfile : MonoBehaviour
     public GameObject createUser;
     public GameObject profile;
 
-    private DatabaseReference dbReference;
-    private string userID;
-
     void Start()
     {
-        dbReference = databaseManager.GetDbReference();
-        userID = databaseManager.GetUserID();
-
         if (databaseManager.GetUserExistence())
             ProfileActive();
         else
             CreateUserActive();
-
-        // CheckUserExistence((bool exists) =>
-        // {
-        //     if (exists)
-        //         ProfileActive();
-        //     else
-        //         CreateUserActive();
-        // });
     }
 
-    #region Create User
     // Create new user in database
     public void CreateUser()
     {
-        User newUser = new User(userID, nameField.text);
-        string json = JsonUtility.ToJson(newUser);
-
-        dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
+        authManager.RegisterUser(nameField.text);
 
         ProfileActive();
-        Debug.Log("Created new user");
     }
-    #endregion
 
     #region Get Info
     // Get user info from database

@@ -3,13 +3,13 @@ using Firebase.Database;
 
 public class DatabaseManager : MonoBehaviour
 {
-    private string userID;
+    private string deviceID;
     private DatabaseReference dbReference;
     private bool userExists = true;
 
     void Awake()
     {
-        userID = SystemInfo.deviceUniqueIdentifier;
+        deviceID = SystemInfo.deviceUniqueIdentifier;
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
@@ -21,7 +21,7 @@ public class DatabaseManager : MonoBehaviour
     #region Check User Existence
     public void CheckUserExistence()
     {
-        dbReference.Child("users").Child(userID).GetValueAsync().ContinueWith(task =>
+        dbReference.Child("users").Child(deviceID).GetValueAsync().ContinueWith(task =>
         {
             if (task.IsFaulted)
             {
@@ -40,9 +40,9 @@ public class DatabaseManager : MonoBehaviour
         return dbReference;
     }
 
-    public string GetUserID()
+    public string GetDeviceID()
     {
-        return userID;
+        return deviceID;
     }
 
     public bool GetUserExistence()
