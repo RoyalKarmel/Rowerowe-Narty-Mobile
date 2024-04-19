@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TextManager : MonoBehaviour
 {
+    [Header("Text Elements")]
     public TMP_Text scoreText;
     public TMP_Text bestScoreText;
     public TMP_Text gameOverScoreText;

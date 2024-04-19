@@ -8,6 +8,7 @@ public class GameOver : MonoBehaviour
     public GameObject[] uiToHide;
     public TextManager textManager;
     public GameManager gameManager;
+    public UpdateUser updateUser;
 
     // You lose
     public void GameOverScreen()
@@ -29,17 +30,18 @@ public class GameOver : MonoBehaviour
         if (score > bestScore) SaveBestScore(score);
 
         HideUI();
-        DestroyObstacle();
+        DestroyObstacles();
     }
 
     #region Utils
     // Save new best score
     void SaveBestScore(float score)
     {
-        string bestScoreKey = gameManager.GetBestScoreKey();
+        // string bestScoreKey = gameManager.GetBestScoreKey();
 
         int bestScore = Mathf.RoundToInt(score);
-        PlayerPrefs.SetInt(bestScoreKey, bestScore);
+        updateUser.UpdateUserScore(bestScore);
+        // PlayerPrefs.SetInt(bestScoreKey, bestScore);
     }
 
     // Hide UI
@@ -52,7 +54,7 @@ public class GameOver : MonoBehaviour
     }
 
     // Destroy all obstacles
-    void DestroyObstacle()
+    void DestroyObstacles()
     {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
         foreach (GameObject obj in allObjects)

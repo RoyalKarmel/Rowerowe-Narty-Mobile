@@ -4,27 +4,43 @@ public class GameManager : MonoBehaviour
 {
     public TextManager textManager;
 
+    [Header("Database")]
+    public UserInfoManager userInfoManager;
+    public UpdateUser updateUser;
+
     private float currentScore = 0;
     private int bestScore = 0;
     private float scoreMultiplier = 1;
     private int coins = 0;
     private int collectedCoins = 0;
     private string bestScoreKey = "BestScore";
-    private string coinsKey = "Coins";
+    // private string coinsKey = "Coins";
 
     void Start()
     {
-        if (PlayerPrefs.HasKey(bestScoreKey))
+        StartCoroutine(userInfoManager.GetUserScore((int userScore) =>
         {
-            bestScore = PlayerPrefs.GetInt(bestScoreKey);
+            bestScore = userScore;
             textManager.SetBestScoreText(bestScore);
-        }
+        }));
 
-        if (PlayerPrefs.HasKey(coinsKey))
+        StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
         {
-            coins = PlayerPrefs.GetInt(coinsKey);
+            coins = userCoins;
             textManager.SetCoinsText(coins);
-        }
+        }));
+
+        // if (PlayerPrefs.HasKey(bestScoreKey))
+        // {
+        //     bestScore = PlayerPrefs.GetInt(bestScoreKey);
+        //     textManager.SetBestScoreText(bestScore);
+        // }
+
+        // if (PlayerPrefs.HasKey(coinsKey))
+        // {
+        //     coins = PlayerPrefs.GetInt(coinsKey);
+        //     textManager.SetCoinsText(coins);
+        // }
     }
 
     void Update()
@@ -63,7 +79,8 @@ public class GameManager : MonoBehaviour
     public void SetCoins(int collectedCoins)
     {
         coins += collectedCoins;
-        PlayerPrefs.SetInt(coinsKey, coins);
+        // PlayerPrefs.SetInt(coinsKey, coins);
+        updateUser.UpdateUserCoins(coins);
         textManager.SetCoinsText(coins);
 
         SetCollectedCoins();
