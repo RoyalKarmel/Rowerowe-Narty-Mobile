@@ -141,11 +141,8 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.2
-  preloadedAssets:
-  - {fileID: -8506848922358935791, guid: 0d4f0951bb002ff45ad5337013b08468, type: 2}
-  - {fileID: 11400000, guid: 41cf30a8fe646de40bf10d0506df4273, type: 2}
-  - {fileID: 11400000, guid: 5bcca18154fc08b4fb6e55ac6c2fa933, type: 2}
+  bundleVersion: 1.0.0
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -295,7 +292,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 43e36658fe3c3df4c8fb0af1e3d562e0, type: 3}
+      m_Icon: {fileID: 2800000, guid: 034e912d63ebd1d4e93636c3cf0f1a7d, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
