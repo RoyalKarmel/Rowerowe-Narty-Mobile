@@ -24,11 +24,13 @@ public class GameManager : MonoBehaviour
             StartCoroutine(userInfoManager.GetUserScore((int userScore) =>
             {
                 bestScore = userScore;
+                textManager.SetBestScoreText(bestScore);
             }));
 
             StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
             {
                 coins = userCoins;
+                textManager.SetCoinsText(coins);
             }));
         }
         else
@@ -38,10 +40,11 @@ public class GameManager : MonoBehaviour
 
             if (PlayerPrefs.HasKey(coinsKey))
                 coins = PlayerPrefs.GetInt(coinsKey);
+
+            textManager.SetBestScoreText(bestScore);
+            textManager.SetCoinsText(coins);
         }
 
-        textManager.SetBestScoreText(bestScore);
-        textManager.SetCoinsText(coins);
     }
 
     void Update()
