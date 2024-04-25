@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PoliceMove : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    public SpriteRenderer spriteRenderer;
     public float deadZoneRight = 13f;
     public float deadZoneLeft = -13f;
-    public SpriteRenderer spriteRenderer;
+    private float moveSpeed;
+
+    public void SetSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
 
     // Update is called once per frame
     void Update()

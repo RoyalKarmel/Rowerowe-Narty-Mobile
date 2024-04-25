@@ -8,6 +8,15 @@ public class Generator : MonoBehaviour
     private float timer = 0;
     public float widthOffset = 10f;
 
+    [Header("Movement variables")]
+    public float enemySpeed = 3f;
+    public float maxEnemySpeed = 6f;
+
+    void Start()
+    {
+        InvokeRepeating("ChangeSpeed", 15f, 15f);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +36,18 @@ public class Generator : MonoBehaviour
         float minX = transform.position.x - widthOffset;
         float maxX = transform.position.x + widthOffset;
 
-        Instantiate(randomObject, new Vector3(Random.Range(minX, maxX), transform.position.y, 0f), transform.rotation);
+        GameObject newObstacle = Instantiate(randomObject, new Vector3(Random.Range(minX, maxX), transform.position.y, 0f), transform.rotation);
+
+        EnemyMove enemyMove = newObstacle.GetComponent<EnemyMove>();
+        if (enemyMove != null)
+        {
+            if (enemySpeed < maxEnemySpeed)
+                enemyMove.SetSpeed(enemySpeed);
+        }
+    }
+
+    void ChangeSpeed()
+    {
+        enemySpeed += 0.5f;
     }
 }

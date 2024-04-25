@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7067723051579774988}
   - component: {fileID: 4536169738986343057}
   - component: {fileID: 4879187709940607965}
-  - component: {fileID: 2347532770423060188}
   - component: {fileID: 2178164234379103245}
+  - component: {fileID: 6070675239809765456}
   - component: {fileID: 4440115618813518777}
   m_Layer: 7
   m_Name: Enemy
@@ -133,20 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7203312, y: 1.5001184}
   m_EdgeRadius: 0
---- !u!114 &2347532770423060188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8750625139901608708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc77d9651d46364a995e3effc90c96c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  deadZone: -7
 --- !u!82 &2178164234379103245
 AudioSource:
   m_ObjectHideFlags: 0
@@ -243,6 +229,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6070675239809765456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750625139901608708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9218d5d78f25340bc8a9348875f5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generator: {fileID: 0}
+  deadZone: -7
 --- !u!114 &4440115618813518777
 MonoBehaviour:
   m_ObjectHideFlags: 0

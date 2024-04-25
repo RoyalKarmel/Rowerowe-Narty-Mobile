@@ -1,9 +1,14 @@
 using UnityEngine;
 
-public class ObstacleMove : MonoBehaviour
+public class EnemyMove : MonoBehaviour
 {
     public float deadZone = -7f;
-    public float moveSpeed = 3f;
+    private float moveSpeed;
+
+    public void SetSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
 
     // Update is called once per frame
     void Update()

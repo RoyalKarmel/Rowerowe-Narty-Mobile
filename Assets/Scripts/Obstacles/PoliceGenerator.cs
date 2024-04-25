@@ -8,6 +8,15 @@ public class PoliceGenerator : MonoBehaviour
     public float spawnInterval = 10f;
     private float timer = 0;
 
+    [Header("Movement variables")]
+    public float policeSpeed = 3f;
+    public float maxPoliceSpeed = 6f;
+
+    void Start()
+    {
+        InvokeRepeating("ChangeSpeed", 15f, 15f);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,5 +38,17 @@ public class PoliceGenerator : MonoBehaviour
 
         SpriteRenderer policeRenderer = newPolice.GetComponent<SpriteRenderer>();
         policeRenderer.flipX = randomIndex == 0;
+
+        PoliceMove policeMove = newPolice.GetComponent<PoliceMove>();
+        if (policeMove != null)
+        {
+            if (policeSpeed < maxPoliceSpeed)
+                policeMove.SetSpeed(policeSpeed);
+        }
+    }
+
+    void ChangeSpeed()
+    {
+        policeSpeed += 0.25f;
     }
 }
