@@ -2085,7 +2085,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!82 &887186369
 AudioSource:
@@ -2433,6 +2433,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 8750625139901608708, guid: 1c461e4f4d2fa5948bad292e6cf4a94f, type: 3}
+  - {fileID: 3869440579178305214, guid: bda1f4d696a335449a9816c67feb295d, type: 3}
+  - {fileID: 896680357468666530, guid: d7d115a65b2ad3849843df06b152d854, type: 3}
   spawnInterval: 4
   widthOffset: 10
 --- !u!1 &1062078748
@@ -3775,7 +3777,7 @@ MonoBehaviour:
   - {fileID: 6491614571675946803, guid: 17cc4d1b72d4dd041a128c93e0883d30, type: 3}
   - {fileID: 1079218906380443245, guid: 24e64909d2eabfa43b68c9e240f73075, type: 3}
   - {fileID: 6523140144145936540, guid: 9a9dc83b7be75754a8c0bf6695ca55ee, type: 3}
-  spawnInterval: 7
+  spawnInterval: 6
   widthOffset: 10
 --- !u!4 &1375574376
 Transform:
@@ -4972,8 +4974,7 @@ MonoBehaviour:
   - {fileID: 1621241476}
   - {fileID: 1959372826}
   policePrefab: {fileID: 6851452366316223757, guid: 3591e30556809e945855120bb4a0f199, type: 3}
-  spawnInterval: 10
-  heightOffset: 3
+  spawnInterval: 7
 --- !u!1 &1842339211
 GameObject:
   m_ObjectHideFlags: 0
@@ -5082,7 +5083,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1852678629
 MonoBehaviour:
@@ -5553,7 +5554,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &2077324211
 MonoBehaviour:
