@@ -4967,6 +4967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadec3795fdd73246afcefc76aef35ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5279732}
   policeGenerators:
   - {fileID: 1621241476}
   - {fileID: 1959372826}
