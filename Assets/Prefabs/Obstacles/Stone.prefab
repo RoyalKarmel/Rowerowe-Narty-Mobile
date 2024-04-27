@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5321641621136513918}
   - component: {fileID: 3597717924697386577}
   - component: {fileID: 919804021174938479}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,5 +240,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc77d9651d46364a995e3effc90c96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
   deadZone: -7
+  moveSpeed: 3

@@ -65,6 +65,11 @@ public class Banner : MonoBehaviour
         Advertisement.Banner.Show(_adUnitId, options);
     }
 
+    public void HideBannerAd()
+    {
+        Advertisement.Banner.Hide();
+    }
+
     void OnBannerClicked() { }
     void OnBannerShown() { }
     void OnBannerHidden() { }

@@ -1609,6 +1609,8 @@ MonoBehaviour:
   - {fileID: 3137048744690200295, guid: d98a4a78f6fba5b41bee2ca60b2b20a3, type: 3}
   spawnInterval: 5
   widthOffset: 10
+  enemySpeed: 3
+  maxEnemySpeed: 6
 --- !u!1 &610499531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2439,8 @@ MonoBehaviour:
   - {fileID: 896680357468666530, guid: d7d115a65b2ad3849843df06b152d854, type: 3}
   spawnInterval: 4
   widthOffset: 10
+  enemySpeed: 3
+  maxEnemySpeed: 6
 --- !u!1 &1062078748
 GameObject:
   m_ObjectHideFlags: 0
@@ -3779,6 +3783,8 @@ MonoBehaviour:
   - {fileID: 6523140144145936540, guid: 9a9dc83b7be75754a8c0bf6695ca55ee, type: 3}
   spawnInterval: 6
   widthOffset: 10
+  enemySpeed: 3
+  maxEnemySpeed: 6
 --- !u!4 &1375574376
 Transform:
   m_ObjectHideFlags: 0
@@ -4975,6 +4981,8 @@ MonoBehaviour:
   - {fileID: 1959372826}
   policePrefab: {fileID: 6851452366316223757, guid: 3591e30556809e945855120bb4a0f199, type: 3}
   spawnInterval: 7
+  policeSpeed: 3
+  maxPoliceSpeed: 6
 --- !u!1 &1842339211
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,6 +5014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11746c8d0bd287c44bcfd9d705dba616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  adsManager: {fileID: 1852678631}
   textManager: {fileID: 1842339214}
   databaseManager: {fileID: 436744961}
   userInfoManager: {fileID: 436744960}
@@ -5076,8 +5085,8 @@ GameObject:
   - component: {fileID: 1852678632}
   - component: {fileID: 1852678631}
   - component: {fileID: 1852678630}
-  - component: {fileID: 1852678629}
   - component: {fileID: 1852678633}
+  - component: {fileID: 1852678634}
   m_Layer: 0
   m_Name: Ads
   m_TagString: Untagged
@@ -5085,21 +5094,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &1852678629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852678628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e2bf2cb191bb144aa2ce798eb57baff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bannerPosition: 4
-  _androidAdUnitId: Banner_Android
-  _iOSAdUnitId: Banner_iOS
 --- !u!114 &1852678630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5129,7 +5123,7 @@ MonoBehaviour:
   _androidGameId: 5580740
   _iOSGameId: 5580741
   _testMode: 0
-  banner: {fileID: 1852678629}
+  banner: {fileID: 1852678634}
   interstitialAds: {fileID: 1852678630}
   rewardedAds: {fileID: 1852678633}
 --- !u!4 &1852678632
@@ -5163,6 +5157,21 @@ MonoBehaviour:
   _androidAdUnitId: Rewarded_Android
   _iOSAdUnitId: Rewarded_iOS
   gameManager: {fileID: 1842339212}
+--- !u!114 &1852678634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852678628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2bf2cb191bb144aa2ce798eb57baff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bannerPosition: 4
+  _androidAdUnitId: Banner_Android
+  _iOSAdUnitId: Banner_iOS
 --- !u!1 &1909596131
 GameObject:
   m_ObjectHideFlags: 0

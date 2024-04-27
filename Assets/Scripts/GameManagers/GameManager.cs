@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public AdsManager adsManager;
     public TextManager textManager;
 
     [Header("Database")]
@@ -19,6 +20,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        adsManager.HideBanner();
+        adsManager.LoadRewardedAd();
+
         if (databaseManager.GetUserExistence())
         {
             StartCoroutine(userInfoManager.GetUserScore((int userScore) =>
@@ -44,7 +48,6 @@ public class GameManager : MonoBehaviour
             textManager.SetBestScoreText(bestScore);
             textManager.SetCoinsText(coins);
         }
-
     }
 
     void Update()
