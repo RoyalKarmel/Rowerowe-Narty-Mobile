@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Firebase.Database;
 using UnityEngine;
 
-public class Ranking : MonoBehaviour
+public class Leaderboard : MonoBehaviour
 {
     public DatabaseManager databaseManager;
     public RowUI rowUI;
@@ -56,8 +56,6 @@ public class Ranking : MonoBehaviour
             row.rank.text = (i + 1).ToString() + ".";
             row.username.text = users[i].username;
             row.best_score.text = users[i].best_score.ToString();
-
-            Debug.Log("Username: " + users[i].username + ", best score: " + users[i].best_score);
         }
     }
 }
