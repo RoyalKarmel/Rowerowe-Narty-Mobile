@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Firebase.Database;
+// using Firebase.Database;
 using UnityEngine;
 
 public class StoreManager : MonoBehaviour
@@ -20,13 +18,13 @@ public class StoreManager : MonoBehaviour
     public string itemKey = "Item";
     public string selectedItemKey = "SelectedItemID";
 
-    private DatabaseReference dbReference;
-    private string deviceID;
+    // private DatabaseReference dbReference;
+    // private string deviceID;
 
     void Start()
     {
-        dbReference = databaseManager.GetDbReference();
-        deviceID = databaseManager.GetDeviceID();
+        // dbReference = databaseManager.GetDbReference();
+        // deviceID = databaseManager.GetDeviceID();
 
         UpdateStyles();
     }
