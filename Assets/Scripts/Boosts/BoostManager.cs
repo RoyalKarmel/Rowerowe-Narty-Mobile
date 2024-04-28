@@ -65,7 +65,7 @@ public class BoostManager : MonoBehaviour
                 break;
             case "Speed":
                 speedImage.SetActive(false);
-                playerController.SetAcceleration(false);
+                playerController.SetMoveSpeed(playerController.normalSpeed);
                 break;
             case "Shield":
                 shieldImage.SetActive(false);

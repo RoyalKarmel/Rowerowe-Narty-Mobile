@@ -27,7 +27,7 @@ public class BoostEffect : MonoBehaviour
     #region  Speed
     public void Speed()
     {
-        playerController.SetAcceleration(true);
+        playerController.SetMoveSpeed(playerController.acceleration);
 
         var emission = movementTraces.emission;
         emission.enabled = true;

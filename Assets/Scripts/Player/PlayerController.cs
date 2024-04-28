@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float normalSpeed = 7f;
+    public float normalSpeed = 6f;
     public float acceleration = 9f;
     public Joystick joystick;
     public Sprite[] skins;
     public SpriteRenderer spriteRenderer;
 
     private float moveSpeed = 0f;
-    private bool isAccelerated = false;
     private bool hasShield = false;
 
     private string selectedSkinKey = "SelectedSkinID";
@@ -50,14 +49,7 @@ public class PlayerController : MonoBehaviour
     }
     public void SetMoveSpeed(float speed)
     {
-        if (!isAccelerated) moveSpeed = speed;
-        else moveSpeed = acceleration;
-    }
-
-    // Toggle acceleration
-    public void SetAcceleration(bool isActive)
-    {
-        isAccelerated = isActive;
+        moveSpeed = speed;
     }
 
     // Toggle shield

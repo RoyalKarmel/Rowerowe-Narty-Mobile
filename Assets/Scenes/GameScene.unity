@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f84a72f7d3e9e469f3d5a4db52178a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 7
+  normalSpeed: 6
   acceleration: 9
   joystick: {fileID: 1542493801}
   skins:
