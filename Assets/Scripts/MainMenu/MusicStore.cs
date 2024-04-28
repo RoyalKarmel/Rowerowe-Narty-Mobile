@@ -24,7 +24,8 @@ public class MusicStore : MonoBehaviour
 
         currentMusic = newMusic;
 
-        soundManager.Stop();
+        if (soundManager.isPlaying)
+            soundManager.volume = 0;
         newMusic.Play();
 
         StartCoroutine(WaitForMusicToEnd());
@@ -35,6 +36,6 @@ public class MusicStore : MonoBehaviour
         while (currentMusic.isPlaying)
             yield return null;
 
-        soundManager.Play();
+        soundManager.volume = 1;
     }
 }
