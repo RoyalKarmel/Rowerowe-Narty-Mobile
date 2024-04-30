@@ -67,6 +67,15 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
         interstitialAds.ShowAd();
     }
 
+    public void RandomChanceForAd()
+    {
+        float chanceToShowAd = 0.5f;
+        float randomNumber = Random.Range(0f, 1f);
+
+        if (randomNumber <= chanceToShowAd)
+            PlayInterstitialAd();
+    }
+
     // Rewarded Ad
     public void LoadRewardedAd()
     {
