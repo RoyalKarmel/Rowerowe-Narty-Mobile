@@ -41,14 +41,15 @@ public class PoliceGenerator : MonoBehaviour
 
         PoliceMove policeMove = newPolice.GetComponent<PoliceMove>();
         if (policeMove != null)
-        {
-            if (policeSpeed < maxPoliceSpeed)
-                policeMove.SetSpeed(policeSpeed);
-        }
+            policeMove.SetSpeed(policeSpeed);
     }
 
     void ChangeSpeed()
     {
-        policeSpeed += 0.25f;
+        if (policeSpeed < maxPoliceSpeed)
+        {
+            policeSpeed += 0.25f;
+            CancelInvoke("ChangeSpeed");
+        }
     }
 }

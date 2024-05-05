@@ -40,14 +40,15 @@ public class Generator : MonoBehaviour
 
         EnemyMove enemyMove = newObstacle.GetComponent<EnemyMove>();
         if (enemyMove != null)
-        {
-            if (enemySpeed < maxEnemySpeed)
-                enemyMove.SetSpeed(enemySpeed);
-        }
+            enemyMove.SetSpeed(enemySpeed);
     }
 
     void ChangeSpeed()
     {
-        enemySpeed += 0.5f;
+        if (enemySpeed < maxEnemySpeed)
+        {
+            enemySpeed += 0.5f;
+            CancelInvoke("ChangeSpeed");
+        }
     }
 }
