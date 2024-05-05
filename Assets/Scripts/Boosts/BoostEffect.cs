@@ -77,7 +77,7 @@ public class BoostEffect : MonoBehaviour
     #region  Pistol
     public void Pistol()
     {
-        shootingManager.ammo = 20;
+        shootingManager.ammo = shootingManager.baseAmmo;
         textManager.SetAmmoText(shootingManager.ammo);
     }
     #endregion

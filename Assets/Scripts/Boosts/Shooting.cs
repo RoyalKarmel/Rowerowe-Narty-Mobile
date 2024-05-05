@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -10,7 +8,8 @@ public class Shooting : MonoBehaviour
     public SoundEffects soundEffects;
     public BoostManager boostManager;
 
-    public int ammo = 20;
+    public int baseAmmo = 10;
+    public int ammo = 10;
 
     public void ShootUp()
     {
