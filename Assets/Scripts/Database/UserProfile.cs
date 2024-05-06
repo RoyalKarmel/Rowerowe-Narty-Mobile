@@ -19,22 +19,38 @@ public class UserProfile : MonoBehaviour
 
     [Header("Player panels")]
     public GameObject createUser;
-    public GameObject profile;
+    public GameObject userProfile;
+
+    [Header("Sign Out Button")]
+    public GameObject signOutButton;
 
     void Start()
     {
-        if (databaseManager.GetUserExistence())
-            ProfileActive();
+        if (authManager.IsUserLoggedIn())
+            UserProfileActive();
         else
             CreateUserActive();
     }
 
     // Create new user in database
-    public void CreateUser()
+    public void SignIn()
     {
-        authManager.RegisterUser(nameField.text);
+        string playerName = nameField.text;
+        if (string.IsNullOrEmpty(playerName))
+        {
+            Debug.Log("Name field can not be empty!");
+            return;
+        }
 
-        ProfileActive();
+        authManager.SignInWithGoogle(nameField.text);
+        UserProfileActive();
+    }
+
+    public void SignOut()
+    {
+        authManager.SignOut();
+
+        CreateUserActive();
     }
 
     #region Get Info
@@ -91,19 +107,20 @@ public class UserProfile : MonoBehaviour
     }
     #endregion
 
-    #region Uitls
+    #region Utils
     void CreateUserActive()
     {
         createUser.SetActive(true);
 
-        profile.SetActive(false);
+        userProfile.SetActive(false);
     }
 
-    void ProfileActive()
+    void UserProfileActive()
     {
         createUser.SetActive(false);
 
-        profile.SetActive(true);
+        userProfile.SetActive(true);
+        signOutButton.SetActive(true);
         GetUserInfo();
     }
     #endregion

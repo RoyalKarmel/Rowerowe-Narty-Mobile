@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StorePage : MonoBehaviour
 {
-    public DatabaseManager databaseManager;
+    public AuthManager authManager;
     public UserInfoManager userInfoManager;
     public TMP_Text coinsText;
 
@@ -11,7 +11,7 @@ public class StorePage : MonoBehaviour
 
     void Start()
     {
-        if (databaseManager.GetUserExistence())
+        if (authManager.IsUserLoggedIn())
         {
             StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
             {

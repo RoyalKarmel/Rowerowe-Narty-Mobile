@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Database;
 using UnityEngine;
@@ -8,52 +7,89 @@ public class AuthManager : MonoBehaviour
     public DatabaseManager databaseManager;
     private DatabaseReference dbReference;
     private FirebaseAuth auth;
-    private string deviceID;
+
+    void Awake()
+    {
+        auth = FirebaseAuth.DefaultInstance;
+    }
 
     void Start()
     {
         dbReference = databaseManager.GetDbReference();
-        deviceID = databaseManager.GetDeviceID();
-        auth = FirebaseAuth.DefaultInstance;
     }
 
-    // Register user in Firebase
-    public void RegisterUser(string name)
+    // Check if user is logged in
+    public bool IsUserLoggedIn()
     {
-        RegisterUserAsync().ContinueWith(task =>
+        if (auth.CurrentUser != null)
         {
-            if (task.IsFaulted || task.IsCanceled)
+            Debug.Log("User logged in");
+            return true;
+        }
+
+        return false;
+    }
+
+    #region Login
+    // Sign in with Google to Firebase
+    public void SignInWithGoogle(string name)
+    {
+        if (auth == null)
+        {
+            Debug.Log("Firebase auth not initialized");
+            return;
+        }
+
+        // Login to Firebase
+        var credential = GoogleAuthProvider.GetCredential(null, null);
+
+        // Sign in with the credential
+        auth.SignInWithCredentialAsync(credential).ContinueWith(task =>
+        {
+            if (task.IsCanceled)
             {
-                Debug.LogError("Failed to register user: " + task.Exception);
+                Debug.Log("SignInWithCredentialAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.Log("SignInWithCredentialAsync encountered an error: " + task.Exception);
                 return;
             }
 
+            // Success
             FirebaseUser newUser = task.Result;
-            CreateUserInDatabase(newUser.UserId, deviceID, name);
+            Debug.Log("User signed in successfully: " + newUser.DisplayName + " (" + newUser.UserId + ")");
+
+            CheckUserInDatabase(newUser.UserId, name);
         });
     }
 
-    private Task<FirebaseUser> RegisterUserAsync()
+    // Check user existence in database
+    void CheckUserInDatabase(string userID, string name)
     {
-        return auth.SignInAnonymouslyAsync().ContinueWith(task =>
+        dbReference.Child("users").Child(userID).GetValueAsync().ContinueWith(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.LogError("Failed to sign in anonymously: " + task.Exception);
-                return null;
+                Debug.LogError("Failed to check user existence in database: " + task.Exception);
+                return;
             }
 
-            return task.Result.User;
+            if (!task.Result.Exists)
+                CreateUserInDatabase(userID, name);
+            else
+                Debug.Log("User already exists in database.");
         });
     }
 
     // Create user in database
-    private void CreateUserInDatabase(string authID, string deviceID, string name)
+    void CreateUserInDatabase(string userID, string name)
     {
-        User newUser = new User(authID, name);
+        User newUser = new User(name);
         string json = JsonUtility.ToJson(newUser);
 
-        dbReference.Child("users").Child(deviceID).SetRawJsonValueAsync(json).ContinueWith(setTask =>
+        dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json).ContinueWith(setTask =>
         {
             if (setTask.IsFaulted || setTask.IsCanceled)
             {
@@ -61,7 +97,16 @@ public class AuthManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log("Created new user with ID: " + deviceID);
+            Debug.Log("Created new user with ID: " + userID);
         });
     }
+    #endregion
+
+    #region Utils
+    public void SignOut()
+    {
+        auth.SignOut();
+        Debug.Log("User signed out successfully.");
+    }
+    #endregion
 }

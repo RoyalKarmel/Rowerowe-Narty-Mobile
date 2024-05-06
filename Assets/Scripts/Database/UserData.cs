@@ -3,7 +3,6 @@ using System.Collections.Generic;
 [System.Serializable]
 public class User
 {
-    public string authID;
     public string username;
     public int best_score;
     public int coins;
@@ -12,9 +11,8 @@ public class User
     public int activeSkinID;
     public int activeMusicID;
 
-    public User(string id, string name)
+    public User(string name)
     {
-        this.authID = id;
         this.username = name;
         this.best_score = 0;
         this.coins = 0;

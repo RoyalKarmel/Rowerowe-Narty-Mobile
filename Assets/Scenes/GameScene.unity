@@ -1084,6 +1084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabda85d83964ad4fa351b46cded5bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  authManager: {fileID: 0}
 --- !u!4 &436744962
 Transform:
   m_ObjectHideFlags: 0
@@ -4553,6 +4554,7 @@ MonoBehaviour:
   textManager: {fileID: 1842339214}
   soundEffects: {fileID: 887186371}
   boostManager: {fileID: 1701953617}
+  baseAmmo: 10
   ammo: 20
 --- !u!114 &1701953617
 MonoBehaviour:
@@ -4795,7 +4797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adsManager: {fileID: 1852678631}
   textManager: {fileID: 1842339214}
-  databaseManager: {fileID: 436744961}
+  authManager: {fileID: 436744963}
   userInfoManager: {fileID: 436744960}
   updateUser: {fileID: 436744959}
 --- !u!4 &1842339213
@@ -4843,7 +4845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f550335a0e1d7b499f78b95ce798102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 436744961}
+  authManager: {fileID: 436744963}
   ads: {fileID: 1852678631}
   gameOverScreen: {fileID: 1266409259}
   uiToHide:

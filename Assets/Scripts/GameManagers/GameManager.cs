@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public TextManager textManager;
 
     [Header("Database")]
-    public DatabaseManager databaseManager;
+    public AuthManager authManager;
     public UserInfoManager userInfoManager;
     public UpdateUser updateUser;
 
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         adsManager.HideBanner();
         adsManager.LoadRewardedAd();
 
-        if (databaseManager.GetUserExistence())
+        if (authManager.IsUserLoggedIn())
         {
             StartCoroutine(userInfoManager.GetUserScore((int userScore) =>
             {

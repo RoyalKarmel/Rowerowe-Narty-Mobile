@@ -13,7 +13,20 @@
           "package_name": "com.royalkarmel.com.unity.template.mobile2D"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "362944384951-ajevf453rjrlb7tfdhqbv8jg8jps5fro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.royalkarmel.com.unity.template.mobile2D",
+            "certificate_hash": "12f6ab3dc303eee97396ed938b025ba8dbc8b811"
+          }
+        },
+        {
+          "client_id": "362944384951-n1nppb1q6avsko9j1l4fiqfd42agmtp5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAGFb6506E8qyViXuc22IZtbXVTs04FgXU"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362944384951-n1nppb1q6avsko9j1l4fiqfd42agmtp5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

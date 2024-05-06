@@ -5,7 +5,7 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
     [Header("Database")]
-    public DatabaseManager databaseManager;
+    public AuthManager authManager;
     public UpdateUser updateUser;
     public UserInfoManager userInfoManager;
 
@@ -47,7 +47,7 @@ public class StoreManager : MonoBehaviour
     public void BuyItem(int itemID, int itemCost)
     {
         // Get coins from player prefs or database
-        if (databaseManager.GetUserExistence())
+        if (authManager.IsUserLoggedIn())
         {
             StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
             {
