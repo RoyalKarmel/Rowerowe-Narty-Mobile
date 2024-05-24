@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
     public TextManager textManager;
 
     [Header("Database")]
-    public AuthManager authManager;
     public UserInfoManager userInfoManager;
     public UpdateUser updateUser;
 
@@ -23,19 +22,27 @@ public class GameManager : MonoBehaviour
         adsManager.HideBanner();
         adsManager.LoadRewardedAd();
 
-        if (authManager.IsUserLoggedIn())
+        if (DatabaseManager.instance.IsUserLoggedIn())
         {
-            StartCoroutine(userInfoManager.GetUserScore((int userScore) =>
-            {
-                bestScore = userScore;
-                textManager.SetBestScoreText(bestScore);
-            }));
+            StartCoroutine(
+                userInfoManager.GetUserScore(
+                    (int userScore) =>
+                    {
+                        bestScore = userScore;
+                        textManager.SetBestScoreText(bestScore);
+                    }
+                )
+            );
 
-            StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
-            {
-                coins = userCoins;
-                textManager.SetCoinsText(coins);
-            }));
+            StartCoroutine(
+                userInfoManager.GetUserCoins(
+                    (int userCoins) =>
+                    {
+                        coins = userCoins;
+                        textManager.SetCoinsText(coins);
+                    }
+                )
+            );
         }
         else
         {

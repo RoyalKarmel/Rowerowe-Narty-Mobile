@@ -11,7 +11,7 @@ public class Leaderboard : MonoBehaviour
 
     void Start()
     {
-        dbReference = databaseManager.GetDbReference();
+        dbReference = databaseManager.dbReference;
 
         StartCoroutine(GetUsersFromDatabase());
     }

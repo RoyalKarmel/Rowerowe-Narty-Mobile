@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    public AuthManager authManager;
     public AdsManager ads;
     public GameObject gameOverScreen;
     public GameObject[] uiToHide;
@@ -28,7 +27,8 @@ public class GameOver : MonoBehaviour
         gameOverScreen.SetActive(true);
 
         // Save new best score
-        if (score > bestScore) SaveBestScore(score);
+        if (score > bestScore)
+            SaveBestScore(score);
 
         HideUI();
         DestroyObstacles();
@@ -40,7 +40,7 @@ public class GameOver : MonoBehaviour
     {
         int bestScore = Mathf.RoundToInt(score);
 
-        if (authManager.IsUserLoggedIn())
+        if (DatabaseManager.instance.IsUserLoggedIn())
             updateUser.UpdateUserScore(bestScore);
 
         string bestScoreKey = gameManager.GetBestScoreKey();

@@ -1,12 +1,11 @@
 using System.Collections;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 
 public class UserProfile : MonoBehaviour
 {
     [Header("Database")]
-    public DatabaseManager databaseManager;
-    public AuthManager authManager;
     public UserInfoManager userInfoManager;
     public UpdateUser updateUser;
 
@@ -14,8 +13,12 @@ public class UserProfile : MonoBehaviour
     public TMP_Text usernameText;
     public TMP_Text scoreText;
     public TMP_Text coinsText;
-    public TMP_InputField newNameField;
+
+    [Header("Input fields")]
+    public TMP_InputField emailField;
+    public TMP_InputField passwordField;
     public TMP_InputField nameField;
+    public TMP_InputField newNameField;
 
     [Header("Player panels")]
     public GameObject createUser;
@@ -26,29 +29,41 @@ public class UserProfile : MonoBehaviour
 
     void Start()
     {
-        if (authManager.IsUserLoggedIn())
+        if (DatabaseManager.instance.IsUserLoggedIn())
             UserProfileActive();
         else
             CreateUserActive();
     }
 
-    // Create new user in database
-    public void SignIn()
+    public void SignUp()
     {
+        string email = emailField.text;
+        string password = passwordField.text;
         string playerName = nameField.text;
-        if (string.IsNullOrEmpty(playerName))
+
+        if (
+            string.IsNullOrEmpty(email)
+            || string.IsNullOrEmpty(password)
+            || string.IsNullOrEmpty(playerName)
+        )
         {
-            Debug.Log("Name field can not be empty!");
+            Debug.LogError("Email, password and name fields cannot be empty!");
             return;
         }
 
-        authManager.SignInWithGoogle(nameField.text);
+        DatabaseManager.instance.SignUp(email, password, playerName);
+    }
+
+    // Create new user in database
+    public void SignIn()
+    {
+        DatabaseManager.instance.SignIn(nameField.text, passwordField.text);
         UserProfileActive();
     }
 
     public void SignOut()
     {
-        authManager.SignOut();
+        DatabaseManager.instance.SignOut();
 
         CreateUserActive();
     }
@@ -57,20 +72,32 @@ public class UserProfile : MonoBehaviour
     // Get user info from database
     void GetUserInfo()
     {
-        StartCoroutine(userInfoManager.GetUserName((string name) =>
-        {
-            usernameText.text = name;
-        }));
+        StartCoroutine(
+            userInfoManager.GetUserName(
+                (string name) =>
+                {
+                    usernameText.text = name;
+                }
+            )
+        );
 
-        StartCoroutine(userInfoManager.GetUserCoins((int coins) =>
-        {
-            coinsText.text = coins.ToString();
-        }));
+        StartCoroutine(
+            userInfoManager.GetUserCoins(
+                (int coins) =>
+                {
+                    coinsText.text = coins.ToString();
+                }
+            )
+        );
 
-        StartCoroutine(userInfoManager.GetUserScore((int score) =>
-        {
-            scoreText.text = score.ToString();
-        }));
+        StartCoroutine(
+            userInfoManager.GetUserScore(
+                (int score) =>
+                {
+                    scoreText.text = score.ToString();
+                }
+            )
+        );
     }
     #endregion
 
@@ -91,19 +118,24 @@ public class UserProfile : MonoBehaviour
 
     IEnumerator UpdateUserNameCoroutine(string newUsername)
     {
-        yield return StartCoroutine(updateUser.UpdateUserName(newUsername, (success) =>
-        {
-            if (success)
-            {
-                usernameText.text = newUsername;
-                newNameField.text = "";
-                Debug.Log("Updated username.");
-            }
-            else
-            {
-                Debug.LogError("Failed to update username.");
-            }
-        }));
+        yield return StartCoroutine(
+            updateUser.UpdateUserName(
+                newUsername,
+                (success) =>
+                {
+                    if (success)
+                    {
+                        usernameText.text = newUsername;
+                        newNameField.text = "";
+                        Debug.Log("Updated username.");
+                    }
+                    else
+                    {
+                        Debug.LogError("Failed to update username.");
+                    }
+                }
+            )
+        );
     }
     #endregion
 
@@ -123,5 +155,6 @@ public class UserProfile : MonoBehaviour
         signOutButton.SetActive(true);
         GetUserInfo();
     }
+
     #endregion
 }

@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "362944384951",
-    "firebase_url": "https://rowerowe-narty-af67d-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "rowerowe-narty-af67d",
-    "storage_bucket": "rowerowe-narty-af67d.appspot.com"
+    "project_number": "783739360888",
+    "firebase_url": "https://rowerowe-narty-test-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "rowerowe-narty-test",
+    "storage_bucket": "rowerowe-narty-test.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:362944384951:android:fb2ce676790ae79086a232",
+        "mobilesdk_app_id": "1:783739360888:android:dec27c10ad1b68ea167f8d",
         "android_client_info": {
           "package_name": "com.royalkarmel.com.unity.template.mobile2D"
         }
       },
       "oauth_client": [
         {
-          "client_id": "362944384951-ajevf453rjrlb7tfdhqbv8jg8jps5fro.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.royalkarmel.com.unity.template.mobile2D",
-            "certificate_hash": "12f6ab3dc303eee97396ed938b025ba8dbc8b811"
-          }
-        },
-        {
-          "client_id": "362944384951-n1nppb1q6avsko9j1l4fiqfd42agmtp5.apps.googleusercontent.com",
+          "client_id": "783739360888-q7abp33nu2m8aioadokumbnsgbbpfq5f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAGFb6506E8qyViXuc22IZtbXVTs04FgXU"
+          "current_key": "AIzaSyD_6PK8Bpq12k75pZUte875z8mOa4iEL04"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "362944384951-n1nppb1q6avsko9j1l4fiqfd42agmtp5.apps.googleusercontent.com",
+              "client_id": "783739360888-q7abp33nu2m8aioadokumbnsgbbpfq5f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
