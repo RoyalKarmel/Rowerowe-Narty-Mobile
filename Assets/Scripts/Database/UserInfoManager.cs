@@ -5,24 +5,27 @@ using UnityEngine;
 
 public class UserInfoManager : MonoBehaviour
 {
-    public DatabaseManager databaseManager;
     private DatabaseReference dbReference;
     private string deviceID;
 
     void Start()
     {
-        dbReference = databaseManager.GetDbReference();
-        deviceID = databaseManager.GetDeviceID();
+        dbReference = DatabaseManager.instance.dbReference;
+        deviceID = DatabaseManager.instance.deviceID;
     }
 
     // Get username
     public IEnumerator GetUserName(Action<string> onCallback)
     {
-        var userNameData = dbReference.Child("users").Child(deviceID).Child("username").GetValueAsync();
+        var userNameData = dbReference
+            .Child("users")
+            .Child(deviceID)
+            .Child("username")
+            .GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userNameData.IsCompleted);
 
-        if (userNameData != null)
+        if (userNameData != null && userNameData.Result.Exists)
         {
             DataSnapshot snapshot = userNameData.Result;
 
@@ -33,11 +36,15 @@ public class UserInfoManager : MonoBehaviour
     // Get user coins
     public IEnumerator GetUserCoins(Action<int> onCallback)
     {
-        var userCoinsData = dbReference.Child("users").Child(deviceID).Child("coins").GetValueAsync();
+        var userCoinsData = dbReference
+            .Child("users")
+            .Child(deviceID)
+            .Child("coins")
+            .GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userCoinsData.IsCompleted);
 
-        if (userCoinsData != null)
+        if (userCoinsData != null && userCoinsData.Result.Exists)
         {
             DataSnapshot snapshot = userCoinsData.Result;
 
@@ -48,11 +55,15 @@ public class UserInfoManager : MonoBehaviour
     // Get user best score
     public IEnumerator GetUserScore(Action<int> onCallback)
     {
-        var userScoreData = dbReference.Child("users").Child(deviceID).Child("best_score").GetValueAsync();
+        var userScoreData = dbReference
+            .Child("users")
+            .Child(deviceID)
+            .Child("best_score")
+            .GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userScoreData.IsCompleted);
 
-        if (userScoreData != null)
+        if (userScoreData != null && userScoreData.Result.Exists)
         {
             DataSnapshot snapshot = userScoreData.Result;
 
@@ -64,7 +75,11 @@ public class UserInfoManager : MonoBehaviour
     public IEnumerator GetUserItems(int itemType, Action<int[]> onCallback)
     {
         string itemPath = (itemType == 0) ? "skins" : "music";
-        var userItemsData = dbReference.Child("users").Child(deviceID).Child(itemPath).GetValueAsync();
+        var userItemsData = dbReference
+            .Child("users")
+            .Child(deviceID)
+            .Child(itemPath)
+            .GetValueAsync();
 
         yield return new WaitUntil(predicate: () => userItemsData.IsCompleted);
 

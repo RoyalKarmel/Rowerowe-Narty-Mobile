@@ -1,53 +1,49 @@
-using UnityEngine;
 using Firebase.Database;
+using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
 {
-    private string deviceID;
-    private DatabaseReference dbReference;
-    private bool userExists = true;
+    #region Singleton
+
+    public static DatabaseManager instance;
 
     void Awake()
     {
-        deviceID = SystemInfo.deviceUniqueIdentifier;
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        instance = this;
     }
+
+    #endregion
+
+    public string deviceID { get; private set; }
+    public DatabaseReference dbReference { get; private set; }
+    public bool userExists { get; private set; }
 
     void Start()
     {
+        deviceID = SystemInfo.deviceUniqueIdentifier;
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        userExists = true;
+
         CheckUserExistence();
     }
 
     #region Check User Existence
     public void CheckUserExistence()
     {
-        dbReference.Child("users").Child(deviceID).GetValueAsync().ContinueWith(task =>
-        {
-            if (task.IsFaulted)
+        dbReference
+            .Child("users")
+            .Child(deviceID)
+            .GetValueAsync()
+            .ContinueWith(task =>
             {
-                Debug.LogError("Failed to check user existence: " + task.Exception);
-                return;
-            }
-            if (!task.Result.Exists)
-                userExists = false;
-        });
-    }
-    #endregion
-
-    #region Utils
-    public DatabaseReference GetDbReference()
-    {
-        return dbReference;
-    }
-
-    public string GetDeviceID()
-    {
-        return deviceID;
-    }
-
-    public bool GetUserExistence()
-    {
-        return userExists;
+                if (task.IsFaulted)
+                {
+                    Debug.LogError("Failed to check user existence: " + task.Exception);
+                    return;
+                }
+                if (!task.Result.Exists)
+                    userExists = false;
+            });
     }
     #endregion
 }

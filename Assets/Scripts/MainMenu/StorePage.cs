@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class StorePage : MonoBehaviour
 {
-    public DatabaseManager databaseManager;
     public UserInfoManager userInfoManager;
     public TMP_Text coinsText;
 
@@ -11,12 +10,16 @@ public class StorePage : MonoBehaviour
 
     void Start()
     {
-        if (databaseManager.GetUserExistence())
+        if (DatabaseManager.instance.userExists)
         {
-            StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
-            {
-                coinsText.text = userCoins.ToString();
-            }));
+            StartCoroutine(
+                userInfoManager.GetUserCoins(
+                    (int userCoins) =>
+                    {
+                        coinsText.text = userCoins.ToString();
+                    }
+                )
+            );
         }
         else
         {

@@ -5,21 +5,24 @@ using UnityEngine;
 
 public class UpdateUser : MonoBehaviour
 {
-    public DatabaseManager databaseManager;
     private DatabaseReference dbReference;
     private string deviceID;
 
     void Start()
     {
-        dbReference = databaseManager.GetDbReference();
-        deviceID = databaseManager.GetDeviceID();
+        dbReference = DatabaseManager.instance.dbReference;
+        deviceID = DatabaseManager.instance.deviceID;
     }
 
     // Update username
     public IEnumerator UpdateUserName(string newName, Action<bool> onUpdateComplete)
     {
         // Check accesibility of new username
-        var checkUsernameTask = dbReference.Child("users").OrderByChild("username").EqualTo(newName).GetValueAsync();
+        var checkUsernameTask = dbReference
+            .Child("users")
+            .OrderByChild("username")
+            .EqualTo(newName)
+            .GetValueAsync();
         yield return new WaitUntil(() => checkUsernameTask.IsCompleted);
 
         // Error handler
@@ -43,7 +46,11 @@ public class UpdateUser : MonoBehaviour
         }
 
         // Update username in database
-        var updateUsernameTask = dbReference.Child("users").Child(deviceID).Child("username").SetValueAsync(newName);
+        var updateUsernameTask = dbReference
+            .Child("users")
+            .Child(deviceID)
+            .Child("username")
+            .SetValueAsync(newName);
         yield return new WaitUntil(() => updateUsernameTask.IsCompleted);
 
         // Error handler
@@ -75,7 +82,12 @@ public class UpdateUser : MonoBehaviour
     // Add item
     public void AddItem(int itemID, string category)
     {
-        dbReference.Child("users").Child(deviceID).Child(category).Child(itemID.ToString()).SetValueAsync(1);
+        dbReference
+            .Child("users")
+            .Child(deviceID)
+            .Child(category)
+            .Child(itemID.ToString())
+            .SetValueAsync(1);
         Debug.Log("Added " + category + " with ID: " + itemID);
     }
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 public class UserProfile : MonoBehaviour
 {
     [Header("Database")]
-    public DatabaseManager databaseManager;
-    public AuthManager authManager;
     public UserInfoManager userInfoManager;
     public UpdateUser updateUser;
 
@@ -23,7 +21,7 @@ public class UserProfile : MonoBehaviour
 
     void Start()
     {
-        if (databaseManager.GetUserExistence())
+        if (DatabaseManager.instance.userExists)
             ProfileActive();
         else
             CreateUserActive();
@@ -32,7 +30,7 @@ public class UserProfile : MonoBehaviour
     // Create new user in database
     public void CreateUser()
     {
-        authManager.RegisterUser(nameField.text);
+        AuthManager.instance.RegisterUser(nameField.text);
 
         ProfileActive();
     }
@@ -41,20 +39,32 @@ public class UserProfile : MonoBehaviour
     // Get user info from database
     void GetUserInfo()
     {
-        StartCoroutine(userInfoManager.GetUserName((string name) =>
-        {
-            usernameText.text = name;
-        }));
+        StartCoroutine(
+            userInfoManager.GetUserName(
+                (string name) =>
+                {
+                    usernameText.text = name;
+                }
+            )
+        );
 
-        StartCoroutine(userInfoManager.GetUserCoins((int coins) =>
-        {
-            coinsText.text = coins.ToString();
-        }));
+        StartCoroutine(
+            userInfoManager.GetUserCoins(
+                (int coins) =>
+                {
+                    coinsText.text = coins.ToString();
+                }
+            )
+        );
 
-        StartCoroutine(userInfoManager.GetUserScore((int score) =>
-        {
-            scoreText.text = score.ToString();
-        }));
+        StartCoroutine(
+            userInfoManager.GetUserScore(
+                (int score) =>
+                {
+                    scoreText.text = score.ToString();
+                }
+            )
+        );
     }
     #endregion
 
@@ -75,19 +85,24 @@ public class UserProfile : MonoBehaviour
 
     IEnumerator UpdateUserNameCoroutine(string newUsername)
     {
-        yield return StartCoroutine(updateUser.UpdateUserName(newUsername, (success) =>
-        {
-            if (success)
-            {
-                usernameText.text = newUsername;
-                newNameField.text = "";
-                Debug.Log("Updated username.");
-            }
-            else
-            {
-                Debug.LogError("Failed to update username.");
-            }
-        }));
+        yield return StartCoroutine(
+            updateUser.UpdateUserName(
+                newUsername,
+                (success) =>
+                {
+                    if (success)
+                    {
+                        usernameText.text = newUsername;
+                        newNameField.text = "";
+                        Debug.Log("Updated username.");
+                    }
+                    else
+                    {
+                        Debug.LogError("Failed to update username.");
+                    }
+                }
+            )
+        );
     }
     #endregion
 

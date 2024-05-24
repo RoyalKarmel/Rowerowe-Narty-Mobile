@@ -5,7 +5,6 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
     [Header("Database")]
-    public DatabaseManager databaseManager;
     public UpdateUser updateUser;
     public UserInfoManager userInfoManager;
 
@@ -18,14 +17,8 @@ public class StoreManager : MonoBehaviour
     public string itemKey = "Item";
     public string selectedItemKey = "SelectedItemID";
 
-    // private DatabaseReference dbReference;
-    // private string deviceID;
-
     void Start()
     {
-        // dbReference = databaseManager.GetDbReference();
-        // deviceID = databaseManager.GetDeviceID();
-
         UpdateStyles();
     }
 
@@ -47,12 +40,16 @@ public class StoreManager : MonoBehaviour
     public void BuyItem(int itemID, int itemCost)
     {
         // Get coins from player prefs or database
-        if (databaseManager.GetUserExistence())
+        if (DatabaseManager.instance.userExists)
         {
-            StartCoroutine(userInfoManager.GetUserCoins((int userCoins) =>
-            {
-                coins = userCoins;
-            }));
+            StartCoroutine(
+                userInfoManager.GetUserCoins(
+                    (int userCoins) =>
+                    {
+                        coins = userCoins;
+                    }
+                )
+            );
         }
         else
             coins = PlayerPrefs.GetInt(coinsKey, 0);

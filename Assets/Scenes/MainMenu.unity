@@ -4734,7 +4734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   databaseManager: {fileID: 1923464557}
-  authManager: {fileID: 1923464560}
   userInfoManager: {fileID: 1923464558}
   updateUser: {fileID: 1923464559}
   usernameText: {fileID: 1968802681}

@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-    public DatabaseManager databaseManager;
     public RowUI rowUI;
     private DatabaseReference dbReference;
 
     void Start()
     {
-        dbReference = databaseManager.GetDbReference();
+        dbReference = DatabaseManager.instance.dbReference;
 
         StartCoroutine(GetUsersFromDatabase());
     }
