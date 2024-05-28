@@ -11,6 +11,12 @@ public class AuthManager : MonoBehaviour
 
     void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogError("More than one instance of Auth Manager found!");
+            return;
+        }
+
         instance = this;
     }
 

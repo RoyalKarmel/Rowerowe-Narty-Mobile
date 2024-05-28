@@ -7,23 +7,29 @@ public class DatabaseManager : MonoBehaviour
 
     public static DatabaseManager instance;
 
-    void Awake()
-    {
-        instance = this;
-    }
-
-    #endregion
-
     public string deviceID { get; private set; }
     public DatabaseReference dbReference { get; private set; }
     public bool userExists { get; private set; }
 
-    void Start()
+    void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogError("More than one instance of Database Manager found!");
+            return;
+        }
+
+        instance = this;
+
         deviceID = SystemInfo.deviceUniqueIdentifier;
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
         userExists = true;
+    }
 
+    #endregion
+
+    void Start()
+    {
         CheckUserExistence();
     }
 

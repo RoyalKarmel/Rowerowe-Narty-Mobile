@@ -1342,7 +1342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9aeeecd53240394194fe6a4daaf1c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
   rowUI: {fileID: 1426358371464900543, guid: 7f093253c9b8e8d48bc5ff2ed98ed3a9, type: 3}
 --- !u!1 &247666452
 GameObject:
@@ -2013,7 +2012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c285574977bf3114f9319e287ee8942c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
   userInfoManager: {fileID: 1923464558}
   coinsText: {fileID: 1609975121}
 --- !u!1 &384484241
@@ -2457,7 +2455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedca05b1b582a74390c01ea5cda3b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
   updateUser: {fileID: 1923464559}
   userInfoManager: {fileID: 1923464558}
   items:
@@ -4733,7 +4730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8c3051bcabd974db8630ed50af2c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
   userInfoManager: {fileID: 1923464558}
   updateUser: {fileID: 1923464559}
   usernameText: {fileID: 1968802681}
@@ -4798,7 +4794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedca05b1b582a74390c01ea5cda3b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
   updateUser: {fileID: 1923464559}
   userInfoManager: {fileID: 1923464558}
   items:
@@ -7448,7 +7443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 650047365}
         m_TargetAssemblyTypeName: UserProfile, Assembly-CSharp
         m_MethodName: UpdateUserName
         m_Mode: 1
@@ -10615,7 +10610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e34795dc96f19f4db7450713d603255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
 --- !u!114 &1923464559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10628,7 +10622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d2503160a6f40418e3d28360bc9321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
 --- !u!114 &1923464560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10641,7 +10634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0ad649027d03c4f8b943563d758d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseManager: {fileID: 1923464557}
 --- !u!1 &1953933077
 GameObject:
   m_ObjectHideFlags: 0
